@@ -1,4 +1,4 @@
-<?php      
+<?php
 	$fecha = $_POST['htd_date'];
 	$nombre = $_POST['htd_name'];
 	$apellido = $_POST['htd_lastname'];
@@ -12,8 +12,8 @@
 	} else if ($noticias == "") {
 		$suscripcion = "No quiere";
 	}
-	
-	
+
+
 // El mensaje
 $from = $mail;
 
@@ -25,7 +25,7 @@ $mensaje = "Asunto: Solicitud de prueba de manejo\n\n";
 	$mensaje .= "Concesionaria: " .$concesionaria. "\n";
 	$mensaje .= "Fecha para prueba : " .$fecha. "\n";
 	$mensaje .= "Desea recibir noticias: " .$suscripcion. "\n";
-	
+
 
 $header = "From:".$nombre."<" . $from. ">\r\n" . "MIME-Version: 1.0\n" . "Content-type: text/plain; charset=iso-8859-1" ; //optional headerfields
 
@@ -34,7 +34,7 @@ $header = "From:".$nombre."<" . $from. ">\r\n" . "MIME-Version: 1.0\n" . "Conten
 $mensaje = wordwrap($mensaje, 70);
 //$correos = $mail."tianar1@hotmail.com";
 
-// Enviar  
-mail("webmaster@medigraf.com.mx", 'Mensaje de la pagina de internet Suzuki GDL', $mensaje, $header) or die("¡Error!");
+// Enviar
+mail("mercadotecnia@suzuki-lm.com.mx", 'Mensaje de la pagina de internet Suzuki GDL', $mensaje, $header) or die("¡Error!");
 header ("location: index.html");
 ?>

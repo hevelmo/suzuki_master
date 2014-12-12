@@ -1,4 +1,4 @@
-<?php      
+<?php
 	$nombre = $_POST['name'];
 	$apellido = $_POST['lastname'];
 	$mail = $_POST['email'];
@@ -49,7 +49,7 @@ $mensaje = "Asunto: Mensaje dirigido al departamento de ".$depa."\n\n";
 	$mensaje .= "Vehículo : " .$auto. "\n";
 	$mensaje .= "Mensaje : " .$mnsj. "\n";
 	$mensaje .= "Desea recibir noticias: " .$suscripcion. "\n";
-	
+
 
 $header = "From:".$nombre."<" . $from. ">\r\n" . "MIME-Version: 1.0\n" . "Content-type: text/plain; charset=iso-8859-1" ; //optional headerfields
 
@@ -58,7 +58,7 @@ $header = "From:".$nombre."<" . $from. ">\r\n" . "MIME-Version: 1.0\n" . "Conten
 $mensaje = wordwrap($mensaje, 70);
 //$correos = $mail."tianar1@hotmail.com";
 
-// Enviar  
-mail("webmaster@medigraf.com.mx, mercadotecnia@suzuki-lm.com.mx", 'Mensaje de contacto de la pagina de internet Suzuki GDL', $mensaje, $header) or die("¡Error!");
+// Enviar
+mail("mercadotecnia@suzuki-lm.com.mx, mercadotecnia@suzuki-lm.com.mx", 'Mensaje de contacto de la pagina de internet Suzuki GDL', $mensaje, $header) or die("¡Error!");
 header ("location: index.html");
 ?>
