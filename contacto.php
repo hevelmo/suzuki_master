@@ -51,7 +51,7 @@ $mensaje = "Asunto: Mensaje dirigido al departamento de ".$depa."\n\n";
 	$mensaje .= "Desea recibir noticias: " .$suscripcion. "\n";
 
 
-$header = "From:".$nombre."<" . $from. ">\r\n" . "MIME-Version: 1.0\n" . "Content-type: text/plain; charset=iso-8859-1" ; //optional headerfields
+$header = "From:".$nombre."<" . $from . ">\r\n" . "MIME-Version: 1.0\n" . "Content-type: text/plain; charset=iso-8859-1" ; //optional headerfields
 
 // En caso de que cualquier línea tenga más de 70 caracteres, habría
 // que usar wordwrap()

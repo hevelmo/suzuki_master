@@ -31,6 +31,7 @@
     <link type="text/css" rel="stylesheet" href="css/plugins/jquery.chosen/chosen.css" />
     <link type="text/css" rel="stylesheet" href="css/libs/datepicker.css" />
     <link type="text/css" rel="stylesheet" href="css/suzuki/main.css" />
+    <link type="text/css" rel="stylesheet" href="css/webfonts/suzuki-webfontkit/stylesheet.css" />
     <link type="text/css" rel="stylesheet" href="css/plugins/jquery.dummy-alert/main.css" />
     <link type="text/css" rel="stylesheet" href="css/plugins/instantdrive.utils/main.css" />
     <link type="text/css" rel="stylesheet" href="css/sections/models.css" />
@@ -80,7 +81,7 @@ function trackOutboundLink( url ) {
         <div id="logo-wrapper">
             <div id="logo">
                 <a href="/" title="Suzuki Autos México">
-                    <span>Suzuki &copy;</span>
+                    <span>Suzuki <sup style="position: relative; top: -2px;">&copy;</sup> Guadalajara</span>
                 </a>
             </div>
         </div>
@@ -258,9 +259,9 @@ facilitando maniobras en espacios reducidos.<br/>Sólo para GLX</p></div>
             <div class="clearfix"></div>
         </div>
     </div>
-    <div class="next-link-text">
+    <!--<div class="next-link-text">
         <a  class="scroll-in-site" href="#galeria"><span>Visita Galería</span></a>
-    </div>
+    </div>-->
 </div>
 
 <a class="section-separator"  name="galeria"></a>
@@ -374,9 +375,9 @@ facilitando maniobras en espacios reducidos.<br/>Sólo para GLX</p></div>
             <div class="hidden-list" >
             </div>
     </div>
-    <div class="next-link-text" style="margin-top: 40px;">
+    <!--<div class="next-link-text" style="margin-top: 40px;">
         <a  class="scroll-in-site" href="#precios"><span>Visita Versiones</span></a>
-    </div>
+    </div>-->
 </div>
 
 
@@ -1584,9 +1585,9 @@ facilitando maniobras en espacios reducidos.<br/>Sólo para GLX</p></div>
 
         <div class="clearfix"></div>
         <p id="p-empty">&nbsp;</p>
-        <div class="next-link-text" style="margin-top: 20px;">
+        <!--<div class="next-link-text" style="margin-top: 20px;">
             <a  class="scroll-in-site" href="#accesorios"><span>Visita Accesorios</span></a>
-        </div>
+        </div>-->
     </div>
 </div>
 
@@ -1698,9 +1699,9 @@ facilitando maniobras en espacios reducidos.<br/>Sólo para GLX</p></div>
             Pregunta en tu concesionaria por los accesorios para que personalices tu Suzuki.<br /><br />
             <a onclick="ga('send', 'event', 'Material de apoyo', 'Descarga', 'Accesorios_kizashi');" href="files/accesorios/kizashi.pdf" class="button blue" target="_blank">Descargar catálogo de accesorios</a>
         </p>
-        <div id="next-test" class="next-link-text" style="margin-top: 40px;">
+        <!--<div id="next-test" class="next-link-text" style="margin-top: 40px;">
             <a  class="scroll-in-site" href="#prueba-de-manejo"><span>Haz una prueba</span></a>
-        </div>
+        </div>-->
     </div>
 </div>
 
@@ -1808,7 +1809,7 @@ facilitando maniobras en espacios reducidos.<br/>Sólo para GLX</p></div>
                                 <div id="step-2-form">
 <!--                                    <form onsubmit="$.model_td_function(); return false;" novalidate>-->
                                         <!--<form id="test_drive" name="test_drive" method="post" action="test_drive2.php">-->
-                                    <form>
+                                    <form id="test_drive" name="test_drive" method="post" action="test_drive2.php">
                                         <p id="step-2-p-date">
                                             ¿Cuándo quieres hacer tu prueba de manejo?
                                         </p>
@@ -1968,6 +1969,7 @@ facilitando maniobras en espacios reducidos.<br/>Sólo para GLX</p></div>
 </label>
 	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Correo electrónico">
 </div>
+<input type="hidden" name="CONCESIO" value="Guadalajara">
 </fieldset>
 	<div id="mce-responses" class="clear">
 		<div class="response" id="mce-error-response" style="display:none">Ocurrio un problema.</div>
@@ -1990,28 +1992,28 @@ facilitando maniobras en espacios reducidos.<br/>Sólo para GLX</p></div>
 
 	<div class="footer-row first row-1">
 			<div class="footer-column column-a">
-                <div class="footer-title"><a href="http://www.suzukivallarta.com.mx" style="color: #fff; font-weight: 900; font-size: 16px;">Av. Vallarta</a></div>
+                <div class="footer-title"><a href="http://www.suzukivallarta.com.mx" taget="_blank" style="color: #fff; font-weight: 900; font-size: 16px;">Av. Vallarta</a></div>
                 Av. Vallarta No. 5300.<br/>
                 Col. Jardines Vallarta. Zapopan, Jal.<br/>
                 Tel. 01(33)3777-1989
                 <div class="clearfix"></div>
             </div>
             <div class="footer-column column-c">
-                <div class="footer-title"><a href="http://www.suzuki-lm.com.mx" style="color: #fff; font-weight: 900; font-size: 16px;">Av. López Mateos</a></div>
+                <div class="footer-title"><a href="http://www.suzuki-lm.com.mx" taget="_blank" style="color: #fff; font-weight: 900; font-size: 16px;">Av. López Mateos</a></div>
                 Av. López Mateos No. 5654<br/>
                 Col. Arboledas. Zapopan, Jal.<br/>
                 Tel. 01(33)3884-8200
                 <div class="clearfix"></div>
             </div>
             <div class="footer-column column-c">
-                <div class="footer-title"><a href="http://www.suzukicolima.com.mx" style="color: #fff; font-weight: 900; font-size: 16px;">Colima</a></div>
+                <div class="footer-title"><a href="http://www.suzukicolima.com.mx" taget="_blank" style="color: #fff; font-weight: 900; font-size: 16px;">Colima</a></div>
                 Av. Felipe Sevilla No. 536<br/>
                 Col. Lomas de Circumbalación. Colima, Colima.<br/>
                 Tel. 01(31)2316-3263
                 <div class="clearfix"></div>
             </div>
             <div class="footer-column column-c">
-                <div class="footer-title"><a href="http://www.suzukimorelia.com.mx" style="color: #fff; font-weight: 900; font-size: 16px;">Morelia</a></div>
+                <div class="footer-title"><a href="http://www.suzukimorelia.com.mx" taget="_blank" style="color: #fff; font-weight: 900; font-size: 16px;">Morelia</a></div>
                 Automotriz Morelia S.A. de C.V.<br/>
                 Periférico Paseo de la Republica 3169 Colonia Las Américas<br/>
                 Morelia, Michoacán, C.P. 58270
