@@ -898,14 +898,14 @@ $(document).ready( function(){
                 $.test_drive_select_car = function( k ){
                     var car_data    = get_car_data( k ),
                         $icons      = $('#car_select_preview .car_thumb_160 .car, #td_concessionaire_car .car_thumb_60 .car, #td_form_car .car_thumb_60 .car, #td_final_car .car_thumb_60 .car'),
-                        $car_texts  = $('#car_select_name h3, #td_concessionaire_car h3, #td_form_car h3, #td_final_car h3');
-                        //$input_car_text = $('#fr_model_car');
+                        $car_texts  = $('#car_select_name h3, #td_concessionaire_car h3, #td_form_car h3, #td_final_car h3'),
+                        $input_car_text = $('#fr_model_car');
 
 
                     tdh_data.key = k;
                     tdh_data.name = car_data.name;
                     $car_texts.text( tdh_data.name );
-                    //$input_car_text.text( tdh_data.name );
+                    $input_car_text.val( tdh_data.name );
 
 
                     $icons.removeClass();
@@ -1078,14 +1078,14 @@ $(document).ready( function(){
                         total_pay       =  funding_data.price -  f_amount,
 //                        total_pay       =  funding_data.price -  f_amount,
                         f_monthly_pay   = funding_core( total_pay, funding_data.months  );
-                    $('#live-engagement,#funding_result_engagement,#funding_resume_engagement,#fr_car_engagement').html( moneyFormat( f_amount ) );
-                    //$('#fr_car_engagement').value( moneyFormat( f_amount ) );
-                    $('#live-months,#funding_result_months,#funding_resume_months,#fr_car_months').html( funding_data.months + ' meses' );
-                    //$('#fr_car_months').value( funding_data.months + ' meses' );
-                    $('#live-price,#funding_result_price,#funding_resume_price,#fr_car_price').html(  moneyFormat(  funding_data.price ) );
-                    //$('#fr_car_price').value(  moneyFormat(  funding_data.price ) );
-                    $('#funding_result_monthly_payment,#funding_resume_monthly_payment,#fr_car_monthly_payment').html(  moneyFormat(  f_monthly_pay ) );
-                    //$('#fr_car_monthly_payment').value(  moneyFormat(  f_monthly_pay ) );
+                    $('#live-engagement,#funding_result_engagement,#funding_resume_engagement').html( moneyFormat( f_amount ) );
+                    $('#fr_car_engagement').val(moneyFormat( f_amount ));
+                    $('#live-months,#funding_result_months,#funding_resume_months').html( funding_data.months + ' meses' );
+                    $('#fr_car_months').val(funding_data.months + ' meses');
+                    $('#live-price,#funding_result_price,#funding_resume_price').html(  moneyFormat(  funding_data.price ) );
+                    $('#fr_car_price').val(moneyFormat(  funding_data.price ));
+                    $('#funding_result_monthly_payment,#funding_resume_monthly_payment').html(  moneyFormat(  f_monthly_pay ) );
+                    $('#fr_car_monthly_payment').val(moneyFormat(  f_monthly_pay ));
                 }
                 $.funding_select_version = function( ii ){
                     var $elements;
@@ -1101,8 +1101,8 @@ $(document).ready( function(){
                 $.funding_select_car = function( k ){
                     var car_data    = get_car_data( k ),
                         $icons      = $('#car_select_preview .car_thumb_160 .car, #fu_adjust_car .car_thumb_60 .car, #funding_result_data .car_thumb_60 .car, #funding-resume-car .car_thumb_60 .car'),
-                        $car_texts  = $('#car_select_name h3, #step-nav-tab h3, #fu_adjust_car h3, #funding_result_data h3, #funding-resume-car h3');
-                        //$input_car_text = $('#fr_model_car');
+                        $car_texts  = $('#car_select_name h3, #step-nav-tab h3, #fu_adjust_car h3, #funding_result_data h3, #funding-resume-car h3'),
+                        $input_car_text = $('#fr_model_car');
 
                     fuh_data.key = k;
                     var anio = '2015';
@@ -1115,7 +1115,7 @@ $(document).ready( function(){
                     $("#car_months_slider").slider({value: 6});
 
                     $car_texts.text( fuh_data.name );
-                    //$input_car_text.val( fuh_data.name );
+                    $input_car_text.val( fuh_data.name );
                     $icons.removeClass();
                     $icons.addClass('car ' + fuh_data.key );
                     var i0 = cars_prices.length, versions = null, i1, i2, tab_data;

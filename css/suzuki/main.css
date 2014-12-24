@@ -1940,7 +1940,10 @@ left: 155px;
 font-size: 18px;
 text-transform: uppercase;
 color: #fff;
-font-family: 'Suzuki-HeadlineRegular';display:inline-block;}#content-wrapper{padding-top:95px}
+font-family: 'Suzuki-HeadlineRegular';display:inline-block;}
+
+
+#content-wrapper{padding-top:95px}
 .header-wrapper {
     position:relative;
 }
