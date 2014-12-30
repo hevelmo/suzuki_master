@@ -30,9 +30,6 @@ var cars_data = [
     { key: 's-cross'        , name: 'S-Cross'  }
 ];
 
-//var modelo, precio, enganche, plazo, plazo; modelo = $('h3.secondary-title').text(); $('input.fr_data').val(modelo); precio = $('p#funding_result_price').text(); $('input.fr_price').val(precio); enganche = $('p#funding_result_engagement').text(); $('input.fr_engagement').val(enganche); mensualidad = $('p#funding_result_monthly_payment').text(); $('input.fr_monthly_payment').val(mensualidad); plazo = $('p#funding_result_months').text(); $('input.fr_months').val(plazo);
-
-
 function instant_drive_available_time(){
     var time = new Date().getHours();
     return ( time > 10 && time < 18 );
@@ -1159,9 +1156,6 @@ $(document).ready( function(){
                         $tel    = $('#hfu_tel'),
                         form_errors = 0;
 
-
-
-
                     if( !$.validate_input( $email ) ){
                         form_errors++;
                         $name.focus();
@@ -1180,7 +1174,8 @@ $(document).ready( function(){
                             form_errors++;
                             $tel.focus();
                         }
-                    }else{
+
+                    } else{
 
                         if( conce_d == null ){
                             console.log(conce_d);
@@ -1214,6 +1209,7 @@ $(document).ready( function(){
                             newsletter  : ('#funding-newsletter:checked').length,
                             source      : 'Funding'
                         }
+
 
                         $('#funding_resume_email').html( data.email );
                         $('#header-financiamiento li.step-nav-tabs').addClass( 'disabled' );
@@ -1273,6 +1269,13 @@ $(document).ready( function(){
                         $('.funding-hidden-inputs').show();
                     }else{
                         $('.funding-hidden-inputs').hide();
+                    }
+                });
+                $('input[name="funding-newsletter"]').on('change, click', function( e ){
+                    if( $('input[name="funding-newsletter"]').is(':checked') ){
+                        $('input[name="funding-newsletter"]').val('on');
+                    }else{
+                        $('input[name="funding-newsletter"]').val('off');
                     }
                 });
                 $('#drive_no').trigger('click');
