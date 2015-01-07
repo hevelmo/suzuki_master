@@ -2152,25 +2152,27 @@ function trackOutboundLink( url ) {
         <div class="section-title">
             <div class="title">Agendar prueba de manejo</div>
             <div class="description">En dos sencillos pasos podrás agendar tu prueba de manejo y vivir la experiencia Suzuki.</div>
-        </div>        <div id="test-drive-steps">
+        </div>
+        <div id="test-drive-steps">
             <div id="header-prueba-manejo-modelos">
                 <div class="test-panel-tabs">
                     <ul>
-                        <li class="test-tabs model-test-tab active">
+                        <!--<li class="test-tabs model-test-tab active">
                             <a class="model-change-tab" href="#" data-number="1">
                                 <span>1</span> Selecciona tu concesionaria
                             </a>
-                        </li>
-                        <li class="test-tabs model-test-tab disabled">
+                        </li>-->
+                        <li class="test-tabs model-test-tab active">
                             <a class="model-change-tab" href="#" data-number="2">
-                                <span>2</span> Fecha y datos personales
+                                ¿Cuándo quieres hacer tu prueba de manejo?
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="panel_tabs_container">
+                    <br><br><br>
                     <div class="panel_tabs" id="">
-                        <div class="step-tab step-tab-model active" id="td-model-step-1">
+                        <!--<div class="step-tab step-tab-model active" id="td-model-step-1">
                             <div id="step-1-car" class="step-left">
                                 <div class="car_thumb_180">
                                     <div class="car sx4-sedan">&nbsp;</div>
@@ -2198,21 +2200,22 @@ function trackOutboundLink( url ) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="step-tab step-tab-model" id="td-model-step-2">
+                        </div>-->
+                        <div class="step-tab step-tab-model active" id="td-model-step-2">
                             <div id="step-2-car" class="step-left">
-                                <h3 class="secondary-title">SX4 Sedán</h3>
-                                <div class="car_thumb_60">
+                                <div class="car_thumb_180">
                                     <div class="car sx4-sedan">&nbsp;</div>
                                 </div>
+                                <h3 class="secondary-title">SX4 Sedán</h3>
                             </div>
                             <div class="step-right">
                                 <div id="step-2-form">
-<!--                                    <form onsubmit="$.model_td_function(); return false;" novalidate>-->
-                                        <!--<form id="test_drive" name="test_drive" method="post" action="test_drive2.php">-->
+                                    <!--<form onsubmit="$.model_td_function(); return false;" novalidate>-->
+                                    <!--<form id="test_drive" name="test_drive" method="post" action="test_drive2.php">-->
                                     <form id="test_drive" name="test_drive" method="post" action="test_drive2.php">
                                         <p id="step-2-p-date">
-                                            ¿Cuándo quieres hacer tu prueba de manejo?
+                                            <input type="hidden" name="concesionaria" id="test_drive_concesionaria" value="Suzuki Guadalajara">
+                                            <input type="hidden" name="modelo" id="test_drive_modelo" value="SX4 Sedán">
                                         </p>
                                         <fieldset>
                                             <label for="step-2-date">Selecciona fecha</label>
@@ -2234,43 +2237,28 @@ function trackOutboundLink( url ) {
                                                 <input type="text" value="" name="step-2-lastname" id="step-2-lastname" placeholder="Apellidos Paterno y Materno" data-validation-data="required|name">
                                                 <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
                                             </fieldset>
-
-                                                <fieldset>
-                                                    <label for="step-2-email">Correo electrónico</label>
-                                                    <input type="email" neme="step-2-email" id="step-2-email" placeholder="Correo electrónico" data-validation-data="required|email" />
-                                                    <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <label for="step-2-tel">Número de celular</label>
-                                                    <input type="tel" name="step-2-tel" id="step-2-tel" maxlength="13" placeholder="Número de celular" data-validation-data="phone"/>
-                                                    <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <label for="step-2-consec">Concesionaria</label>
-                                                    <select name="step-2-consec" id="step-2-consec">
-                                                        <option value="">Selecciona Consesionaria</option>
-                                                        <option value="suzuki-colima">Suzuki Colima</option>
-                                                        <option value="suzuki-lopez-mateos">Suzuki López Mateos</option>
-                                                        <option value="suzuki-morelia">Suzuki Morelia</option>
-                                                        <option value="suzuki-vallarta">Suzuki Vallarta</option>
-                                                    </select>
-                                                </fieldset>
+                                            <fieldset>
+                                                <label for="step-2-email">Correo electrónico</label>
+                                                <input type="email" neme="step-2-email" id="step-2-email" placeholder="Correo electrónico" data-validation-data="required|email" />
+                                                <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
+                                            </fieldset>
+                                            <fieldset>
+                                                <label for="step-2-tel">Número de celular</label>
+                                                <input type="tel" name="step-2-tel" id="step-2-tel" maxlength="13" placeholder="Número de celular" data-validation-data="phone"/>
+                                                <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
+                                            </fieldset>
                                             <fieldset class="fieldset-radio-checkbox">
                                                 <label for="chk-newsletter" class="label-checkbox">
-                                                    <input type="checkbox" id="chk-newsletter" name="chk-newsletter"> Deseo recibir noticias y promociones.
+                                                    <input type="checkbox" id="chk-newsletter" name="chk-newsletter" checked="checked"> Deseo recibir noticias y promociones.
                                                 </label>
                                             </fieldset>
                                         </div>
-
-
                                         <input type="hidden" name="step-2-modelo" id="step-2-modelo" value="SX4 Sedán">
                                         <input type="submit" class="enviar button blue" id="models_send_td" value="Agendar prueba de manejo">
                                         <p id="step-2-legal">
                                             Tus datos están a salvo.<br>Para mayor información revisa nuestro <a href="aviso-privacidad.html">Aviso de Privacidad</a>
                                         </p>
                                     </form>
-                                    <div id="respuesta"></div>
-                                    <div id="respuesta2"></div>
                                 </div>
                                 <div id="step-2-final">
                                     <h4 class="secondary-title">Gracias</h4>
@@ -2289,6 +2277,7 @@ function trackOutboundLink( url ) {
                             </div>
                         </div>
                     </div>
+                    <br><br><br>
                 </div>
             </div>
         </div>
@@ -2296,7 +2285,7 @@ function trackOutboundLink( url ) {
 </div>
 <div class="model-section"></div>
 
-    </div>
+</div>
 </div>
 <!-- End: Content -->
 <!-- Begin: Footer -->

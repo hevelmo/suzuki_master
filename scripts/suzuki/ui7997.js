@@ -15,12 +15,12 @@ $(document).ready(function () {
 
 	// Script para cambiar el estilo de los input radio y checkboxes
     if ($(".label-radio").length) {
-        $('.label-radio input:checked').each(function(){ 
+        $('.label-radio input:checked').each(function(){
             //$(this).parent('label').addClass('radio-checked');
         });
     }
     if ($(".label-checkbox").length) {
-        $('.label-checkbox input:checked').each(function(){ 
+        $('.label-checkbox input:checked').each(function(){
             $(this).parent('label').addClass('checkbox-checked');
         });
     }

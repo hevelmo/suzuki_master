@@ -186,12 +186,12 @@ $(document).ready(function(){
             $step_tabs.removeClass('active').removeClass('disabled');
             $step_tabs.eq( step - 1 ).addClass('active');
             $mtt.removeClass('active').removeClass('disabled');
-            $mtt.eq(0).addClass('disabled');
+            $mtt.eq(0).addClass('active');
             $mtt.eq(1).addClass('active');
 
         }
 
-        function td_show_concessionaires( elements ){
+        /*function td_show_concessionaires( elements ){
             var i0 = 0, i1 = elements.length;
             var html = '';
             if( i1 > 0 ){
@@ -220,7 +220,7 @@ $(document).ready(function(){
             selected_concessionaire = $(this).data('id');
             goto_step( 2 );
 
-        });
+        });*/
 
         $('#step-2-date').datepicker({
             minDate: '+1d',
@@ -318,7 +318,7 @@ $(document).ready(function(){
 
 
 
-
+/*
         var optionsAutocomplete = {
             types: ['geocode'],
             componentRestrictions: { country: "MX" }
@@ -353,7 +353,7 @@ $(document).ready(function(){
                 }
             }
             td_show_concessionaires( elements );
-        });
+        });*/
 
     }
     in_site_test_drive();

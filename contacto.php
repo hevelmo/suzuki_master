@@ -48,8 +48,8 @@
 
 		$mail_origin = $mail;
 
-		$to = 'heriberto@medigraf.com.mx';
-		//$to = 'webmaster@medigraf.com.mx';
+		//$to = 'heriberto@medigraf.com.mx';
+		$to = 'webmaster@medigraf.com.mx';
 		$subject = "Noticias y promociones - Suzuki GDL";
 
 		$mensaje   .= '<html>
@@ -188,8 +188,8 @@
 
 	$mail_origin = $mail;
 
-	//$to = 'mercadotecnia@suzuki-lm.com.mx';
-	$to = 'heriberto@medigraf.com.mx';
+	//$to = 'cold_space@hotmail.com';
+	$to = 'mercadotecnia@suzuki-lm.com.mx';
 	$subject = "Mensaje dirigido al departamento de ".$depto."\n\n";
 
 	$message   .= '<html>
