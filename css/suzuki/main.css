@@ -2649,8 +2649,6 @@ font-family: 'Suzuki-HeadlineRegular';display:inline-block;}
     text-align:center;
     line-height:100%;
     cursor:inherit;
-    width: 100%;
-    margin: 0 46%;
 }
 .panel_tabs_nav ul li a.active, .test-panel-tabs ul li a.active {
     color:#fff;

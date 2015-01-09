@@ -33,8 +33,8 @@
                             html_output += '<option value="' + state.key + '">' + state.name + '</option>'
                         }
                         $( defaults.target ).html(
-                            '<select style="width: 240px;" class="' + defaults.states_class + '">' + html_output + '</select>' +
-                            '<select style="width: 240px;" name="porra" class="' + defaults.concessionaires_class + '" disabled="disabled"><option value="-1">' + defaults.concessionaires_text + '</option></select>'
+                            '<select style="width: 240px;" class="' + defaults.states_class + '" data-validation-data="required|porra">' + html_output + '</select>' +
+                            '<select style="width: 240px;" name="porra" class="' + defaults.concessionaires_class + '" data-validation-data="required|porra" disabled="disabled"><option value="-1">' + defaults.concessionaires_text + '</option></select>'
 
                         );
 
