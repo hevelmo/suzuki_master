@@ -27,7 +27,7 @@
 	} elseif ($modelo === "S-Cross 2015") {
 		$image_modelo = "suzuki_s-cross.png";
 	}
-	if ($concesionaria === 'lopez-mateos') {
+	/*if ($concesionaria === 'lopez-mateos') {
 		$concesionaria = 'Suzuki López Mateos';
 	} elseif ($concesionaria === 'vallarta') {
 		$concesionaria = 'Suzuki Vallarta';
@@ -35,7 +35,7 @@
 		$concesionaria = 'Suzuki Colima';
 	} elseif ($concesionaria === 'morelia') {
 		$concesionaria = 'Suzuki Morelia';
-	}
+	}*/
 	if ($prueba == "Sí deseas manejarlo") {
 		$telefono;
 	} elseif ($prueba == "No deseas manejarlo") {
@@ -153,8 +153,8 @@
 				</table>
 			</div>
 		");
-		$respuesta2 = mail("webmaster@medigraf.com.mx", "Newsletter - Suzuki Guadalajara.", $mensaje2, $encabezados2);
-		//$respuesta2 = mail("heriberto@medigraf.com.mx", "Newsletter - Suzuki Guadalajara.", $mensaje2, $encabezados2);
+		$respuesta2 = mail("webmaster@medigraf.com.mx", "Financiamiento Newsletter - Suzuki Guadalajara.", $mensaje2, $encabezados2);
+		//$respuesta2 = mail("heriberto@medigraf.com.mx", "Financiamiento Newsletter - Suzuki Guadalajara.", $mensaje2, $encabezados2);
 		if ( $respuesta2 == true) {
             echo 'El email se envió exitosamente -> 2 <br>';
         }
@@ -376,8 +376,8 @@
 			</table>
 		</div>
 	");
-	mail('mercadotecnia@suzuki-lm.com.mx', 'Solicitud de la pagina de internet Suzuki Guadalajara para cotizar.', $mensaje, $headers) or die('¡Error!');
-	//$respuesta = mail("cold_space@hotmail.com", "Solicitud de la pagina de internet Suzuki Guadalajara para cotizar.", $mensaje, $encabezados);
+	mail('mercadotecnia@suzuki-lm.com.mx', 'Financiamiento - Solicitud de la pagina de internet Suzuki Guadalajara para cotizar.', $mensaje, $headers) or die('¡Error!');
+	//$respuesta = mail("cold_space@hotmail.com", "Financiamiento - Solicitud de la pagina de internet Suzuki Guadalajara para cotizar.", $mensaje, $encabezados);
 	if ( $respuesta == true) {
         echo 'El email se envió exitosamente -> 1';
     }

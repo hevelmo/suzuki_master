@@ -39,34 +39,38 @@
 (function(){
     $(".form_contact_gdl").click(function() {
 
-        var nombre = $("#contact_name").val();
-			apellidos = $("#contact_lastname").val();
-			email = $("#contact_email").val();
+        var nombre = $("#c_name").val();
+			apellidos = $("#c_lastname").val();
+			email = $("#c_email").val();
             validacion_email = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
-			departamento = $("#contact_department").val();
-			modelo = $("#contact_car_key").val();
-			mensaje = $("#contact_message").val();
+			departamento = $("#c_department").val();
+			modelo = $("#c_model").val();
+			mensaje = $("#c_message").val();
 
-        if (nombre == "" || apellidos == "") {
-            $("#contact_name").focus();
-            $("#contact_lastname").focus();
+        if (nombre == "") {
+            $("#c_name").focus();
+            $("#c_lastname").focus();
+            return false;
+        }else if (apellidos == "") {
+            $("#c_name").focus();
+            $("#c_lastname").focus();
             return false;
         }else if(email == "" || !validacion_email.test(email)){
-            $("#contact_email").focus();
+            $("#c_email").focus();
             return false;
         }else if(departamento == "" || modelo == ""){
-        	$("#contact_department").focus();
-        	$("#contact_car_key").focus();
+        	$("#c_department").focus();
+        	$("#c_model").focus();
         	return false;
         }else if(mensaje == ""){
-            $(".mensaje").focus();
+            $("#c_message").focus();
             return false;
         }else{
             // Si todo paso, aqui ira la llamada AJAX
             $('.ajaxgif').removeClass('hide');
-            var datos = 'nombre='+ nombre + '&email=' + email + '&mensaje=' + mensaje;
+            var datos = 'name='+ name + '&lastname='+ lastname + '&email=' + email + '&departamento='+ departamento + '&car='+ car + '&message=' + message;
             $.ajax({
-                type: "POST",
+                type: "post",
                 url: "contacto.php",
                 data: datos,
                 success: function() {
@@ -77,9 +81,12 @@
                         $('.msg').text('Mensaje enviado!').addClass('msg_ok').animate({ 'right' : '680px' }, 300);
                         setTimeout(function() {
                             $('.msg').text('').removeClass('msg_ok').animate({ 'right' : '650px' }, 300);
-                            $(".nombre").val("");
-                            $(".email").val("");
-                            $(".mensaje").val("");
+                            $("#c_name").val("");
+                            $("#c_lastname").val("");
+                            $("#c_email").val("");
+                            $("#c_department").val("");
+                            $("#c_model").val("");
+                            $("#c_message").val("");
                         }, 2500);
                     }, 3000);
                 },

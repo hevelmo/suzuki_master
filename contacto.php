@@ -50,7 +50,7 @@
 
 		//$to = 'heriberto@medigraf.com.mx';
 		$to = 'webmaster@medigraf.com.mx';
-		$subject = "Noticias y promociones - Suzuki GDL";
+		$subject = "Contacto - Noticias y promociones - Suzuki Guadalajara";
 
 		$mensaje   .= '<html>
 							<head>
@@ -190,7 +190,7 @@
 
 	//$to = 'cold_space@hotmail.com';
 	$to = 'mercadotecnia@suzuki-lm.com.mx';
-	$subject = "Mensaje dirigido al departamento de ".$depto."\n\n";
+	$subject = "Contacto - Mensaje dirigido al departamento de ".$depto."\n\n";
 
 	$message   .= '<html>
 						<head>

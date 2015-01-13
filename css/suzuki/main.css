@@ -1,6 +1,8 @@
 ﻿
 @import url("../webfonts/suzuki-webfontkit/stylesheet.css");
 
+.hide{display:none!important}.show{display:block!important}
+
 body {
     font-family:"Lato";
 }
@@ -2077,7 +2079,14 @@ font-family: 'Suzuki-HeadlineRegular';display:inline-block;}
     margin:0;
     height:35px;
 }
-.header-wrapper #header-zone #regular-header .content-no_wrapper #top-bar ul li a {
+.header-wrapper #header-zone #regular-header .content-no_wrapper #top-bar ul li a span {
+    display:block;
+    padding:8px 15px 8px 15px;
+    color:#e5e5e5;
+    line-height:19px;
+    font-size:13px;
+}
+.header-wrapper #header-zone #regular-header .content-no_wrapper #top-bar ul li span {
     display:block;
     padding:8px 15px 8px 15px;
     color:#e5e5e5;

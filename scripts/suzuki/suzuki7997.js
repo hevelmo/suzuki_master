@@ -290,7 +290,7 @@ $(document).ready( function(){
 
     //Validates an input with data-validation-data attribute and displays or hide bubble meesage
     $.validate_input = function( $input ){
-        if( $input.is('input') || $input.is('textarea') ){
+        if( $input.is('input') || $input.is('textarea') || $input.is('select') ){
             var val_data    = $input.data('validation-data').split('|'),
                 required    = val_data.indexOf('required');
             if( required >= 0 ){
@@ -1153,6 +1153,8 @@ $(document).ready( function(){
                         $name   = $('#hfu_name'),
                         $lastname  = $('#hfu_lastname'),
                         $email  = $('#hfu_email'),
+                        /*$state  = $('#hfu_state_chzn_chzn'),
+                        $concessionaire  = $('#hfu_concessionaire_chzn'),*/
                         $tel    = $('#hfu_tel'),
                         form_errors = 0;
 
@@ -1168,6 +1170,18 @@ $(document).ready( function(){
                         form_errors++;
                         $name.focus();
                     }
+                    /*if( !$.validate_input( $state ) ){
+                        form_errors++;
+                        $name.focus();
+                    }
+                    if( !$.validate_input( $state ) ){
+                        form_errors++;
+                        $name.focus();
+                    }*/
+                    if( !$.validate_input( $concessionaire ) ){
+                        form_errors++;
+                        $name.focus();
+                    }
                     if( extended > 0 ){
 
                         if( !$.validate_input( $tel ) ){
@@ -1180,7 +1194,7 @@ $(document).ready( function(){
                         if( conce_d == null ){
                             console.log(conce_d);
                             form_errors++;
-                            $.error_bubble( $('#tdcss'), true);
+                            /*$.error_bubble( $('#tdcss'), true);*/
                             /*
                              if(  ){
 
@@ -1190,9 +1204,9 @@ $(document).ready( function(){
                              });
 
                              }*/
-                            $('#tdcs .chzn-container a').trigger('click').focus();
+                            /*$('#tdcs .chzn-container a').trigger('click').focus();*/
                         } else {
-                            $.error_bubble( $('#tdcss'), false );
+                            /*$.error_bubble( $('#tdcss'), false );*/
                         }
                         $.error_bubble( $tel, false );
                         //
@@ -1205,7 +1219,9 @@ $(document).ready( function(){
                             engagement  : funding_data.engagement,
                             months      : funding_data.months,
                             name        : $name.val(),
-                            lastname    : $lastname.val(),
+                            /*lastname    : $lastname.val(),
+                            state       : $state.val(),*/
+                            concessionaire       : $concessionaire.val(),
                             newsletter  : ('#funding-newsletter:checked').length,
                             source      : 'Funding'
                         }
@@ -1260,6 +1276,14 @@ $(document).ready( function(){
                     var $input = $(this);
                     $.validate_input( $input );
                 });
+                /*$('#tdcs select#hfu_state_chzn_chzn').delegate('select, change', function( e ){
+                    var $input = $(this);
+                    $.validate_input( $input );
+                });
+                $('#tdcs select#hfu_concessionaire_chzn').delegate('select, change', function( e ){
+                    var $input = $(this);
+                    $.validate_input( $input );
+                });*/
                 $('#hfu_tel').on('focusout', function(){
                     var $input = $(this);
                     $.validate_input( $input );
@@ -1282,7 +1306,7 @@ $(document).ready( function(){
                 $('#tdr_end').on('click', function(){
                     $.openPanel('');
                 });
-                $('#tdcs').concessionaire_selector({
+                /*$('#tdcs').concessionaire_selector({
                     callback: function( data ){
                         conce_d = {
                             key: this.id,
@@ -1294,11 +1318,23 @@ $(document).ready( function(){
                 $('#tdcs').delegate('select','change',function(){
                     if( $('#tdcs select').length > 0 ){
                         if( $('#tdcs select').length > 1 ){
-                            $('#error_concessionaire').css({marginLeft:250});
+                            $('#error_state').css({marginLeft:0});
                         }
+                        console.log($('#tdcs select'));
+                        console.log($('#error_state'));
                     }
 
                 })
+                $('#tdcs').delegate('select','change',function(){
+                    if( $('#tdcs select').length > 0 ){
+                        if( $('#tdcs select').length > 1 ){
+                            $('#error_concessionaire').css({marginLeft:250});
+                        }
+                        console.log($('#tdcs select'));
+                        console.log($('#error_concessionaire'));
+                    }
+
+                })*/
 
                 $("#car_engagement_slider").slider({
                     change  : function( event, ui ) {
