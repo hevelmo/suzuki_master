@@ -36,11 +36,11 @@
 	} elseif ($concesionaria === 'morelia') {
 		$concesionaria = 'Suzuki Morelia';
 	}*/
-	if ($prueba == "Sí deseas manejarlo") {
+	/*if ($prueba == "Sí deseas manejarlo") {
 		$telefono;
 	} elseif ($prueba == "No deseas manejarlo") {
 		$telefono = "No se agrego telefono";
-	}
+	}*/
 	if (isset($noticias) && $noticias == "on") {
 		$suscripcion = "Activado";
 		$from2 = $mail;
@@ -308,21 +308,21 @@
 									<tr>
 										<td height='20' valign='top' width='250'>
 											<strong style='color: #0059a9; font-family: Lato, Arial, sans-serif; font-size: 12px; font-weight: 900; text-align: right; padding: 0'>
-												Desea realizar prueba de manejo :
-											</strong>
-										</td>
-										<td height='20' valign='top'>
-											<span style='margin-left: 15px; font-family: Lato, Arial, sans-serif; font-size: 12px; font-weight: 400; text-align: right; padding: 0'>$prueba</span><br>
-										</td>
-									</tr>
-									<tr>
-										<td height='20' valign='top' width='250'>
-											<strong style='color: #0059a9; font-family: Lato, Arial, sans-serif; font-size: 12px; font-weight: 900; text-align: right; padding: 0'>
 												Telefono:
 											</strong>
 										</td>
 										<td height='20' valign='top'>
 											<span style='margin-left: 15px; font-family: Lato, Arial, sans-serif; font-size: 12px; font-weight: 400; text-align: right; padding: 0'>$telefono</span><br>
+										</td>
+									</tr>
+									<tr>
+										<td height='20' valign='top' width='250'>
+											<strong style='color: #0059a9; font-family: Lato, Arial, sans-serif; font-size: 12px; font-weight: 900; text-align: right; padding: 0'>
+												Desea realizar prueba de manejo :
+											</strong>
+										</td>
+										<td height='20' valign='top'>
+											<span style='margin-left: 15px; font-family: Lato, Arial, sans-serif; font-size: 12px; font-weight: 400; text-align: right; padding: 0'>$prueba</span><br>
 										</td>
 									</tr>
 									<tr>
@@ -376,7 +376,7 @@
 			</table>
 		</div>
 	");
-	mail('mercadotecnia@suzuki-lm.com.mx', 'Financiamiento - Solicitud de la pagina de internet Suzuki Guadalajara para cotizar.', $mensaje, $headers) or die('¡Error!');
+	$respuesta = mail("mercadotecnia@suzuki-lm.com.mx", "Financiamiento - Solicitud de la pagina de internet Suzuki Guadalajara para cotizar.", $mensaje, $encabezados);
 	//$respuesta = mail("cold_space@hotmail.com", "Financiamiento - Solicitud de la pagina de internet Suzuki Guadalajara para cotizar.", $mensaje, $encabezados);
 	if ( $respuesta == true) {
         echo 'El email se envió exitosamente -> 1';

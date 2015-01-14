@@ -2215,47 +2215,47 @@ function trackOutboundLink( url ) {
                                     <!--<form id="test_drive" name="test_drive" method="post" action="test_drive2.php">-->
                                     <form id="test_drive" name="test_drive" method="post" action="test_drive2.php">
                                         <p id="step-2-p-date">
-                                            <input type="hidden" name="concesionaria" id="test_drive_concesionaria" value="Suzuki Guadalajara">
-                                            <input type="hidden" name="modelo" id="test_drive_modelo" value="SX4 Sedán">
-                                        </p>
-                                        <fieldset>
-                                            <label for="step-2-date">Selecciona fecha</label>
-                                            <input type="text" value="" name="step-2-date" id="step-2-date" placeholder="YYYY-MM-DD" data-validation-data="required|date">
-                                            <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
-                                        </fieldset>
-                                        <p id="step-2-p-contact">
-                                            Para mejorar tu experiencia nos gustaría conocerte.<br>Proporciónanos los siguientes datos para poder comunicarnos contigo.
+                                            <span style="color: red; font-size: 12px;">Los campos marcados con <span class="fa fa-asterisk"></span> son requeridos</span>
+                                            <input type="hidden" name="step-2-concesionaria" id="test_drive_concesionaria" value="Suzuki Guadalajara">
+                                            <input type="hidden" name="step-2-modelo" id="test_drive_modelo" value="sx4-sedan">
+                                            <p id="step-2-p-contact">
+                                                Para mejorar tu experiencia nos gustaría conocerte.<br>Proporciónanos los siguientes datos para poder comunicarnos contigo.
+                                            </p>
                                         </p>
 
                                         <div id="mail-cel-step-2">
                                             <fieldset>
-                                                <label for="step-2-name">Nombre</label>
+                                                <label for="step-2-date"><span style="color: red; font-size: 12px;"><span class="fa fa-asterisk"></span></span> Selecciona fecha</label>
+                                                <input type="text" value="" name="step-2-date" id="step-2-date" placeholder="YYYY-MM-DD" data-validation-data="required|date">
+                                                <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
+                                            </fieldset>
+                                            <fieldset>
+                                                <label for="step-2-name"><span style="color: red; font-size: 12px;"><span class="fa fa-asterisk"></span></span> Nombre</label>
                                                 <input type="text" value="" name="step-2-name" id="step-2-name" placeholder="Nombre" data-validation-data="required|name">
                                                 <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
                                             </fieldset>
                                             <fieldset>
-                                                <label for="step-2-lastname">Apellido</label>
+                                                <label for="step-2-lastname"><span style="color: red; font-size: 12px;"><span class="fa fa-asterisk"></span></span> Apellido</label>
                                                 <input type="text" value="" name="step-2-lastname" id="step-2-lastname" placeholder="Apellidos Paterno y Materno" data-validation-data="required|name">
                                                 <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
                                             </fieldset>
                                             <fieldset>
-                                                <label for="step-2-email">Correo electrónico</label>
-                                                <input type="email" neme="step-2-email" id="step-2-email" placeholder="Correo electrónico" data-validation-data="required|email" />
+                                                <label for="step-2-email"><span style="color: red; font-size: 12px;"><span class="fa fa-asterisk"></span></span> Correo electrónico</label>
+                                                <input type="email" name="step-2-email" id="step-2-email" placeholder="Correo electrónico" data-validation-data="required|email" />
                                                 <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
                                             </fieldset>
                                             <fieldset>
-                                                <label for="step-2-tel">Número de celular</label>
-                                                <input type="tel" name="step-2-tel" id="step-2-tel" maxlength="13" placeholder="Número de celular" data-validation-data="phone"/>
+                                                <label for="step-2-tel"><span style="color: red; font-size: 12px;"><span class="fa fa-asterisk"></span></span> Número de celular</label>
+                                                <input type="tel" value="" name="step-2-tel" id="step-2-tel" maxlength="13" placeholder="Número de celular" data-validation-data="required|phone"/>
                                                 <p class="invalid-message">Este campo es obligatorio<span>&nbsp;</span></p>
                                             </fieldset>
-                                            <fieldset class="fieldset-radio-checkbox">
+                                            <fieldset class="fieldset-radio-checkbox" style="clear: both;">
                                                 <label for="chk-newsletter" class="label-checkbox">
-                                                    <input type="checkbox" id="chk-newsletter" name="chk-newsletter" checked="checked"> Deseo recibir noticias y promociones.
+                                                    <input type="checkbox" id="chk-newsletter" name="chk-newsletter" value=""> Deseo recibir noticias y promociones.
                                                 </label>
                                             </fieldset>
+                                            <input type="submit" class="enviar button blue" id="" value="Agendar prueba de manejo">
                                         </div>
-                                        <input type="hidden" name="step-2-modelo" id="step-2-modelo" value="SX4 Sedán">
-                                        <input type="submit" class="enviar button blue" id="models_send_td" value="Agendar prueba de manejo">
                                         <p id="step-2-legal">
                                             Tus datos están a salvo.<br>Para mayor información revisa nuestro <a href="aviso-privacidad.html">Aviso de Privacidad</a>
                                         </p>
@@ -2346,32 +2346,26 @@ function trackOutboundLink( url ) {
 <p>Experimenta el estilo de vida Suzuki. Ingresa tus datos:</p>
 <form action="//medigraf.us6.list-manage.com/subscribe/post?u=eb6adc86fe16ad4e6562f80c1&amp;id=0136300666" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
-<fieldset>
-<div class="mc-field-group">
-	<label for="mce-FNAME">Nombre completo:  <span class="fa fa-asterisk"></span>
-</label>
-	<input type="text" value="" name="FNAME" class="required" id="mce-FNAME"  placeholder="Nombre completo">
-</div>
-<div class="indicates-required"><span class="fa fa-asterisk"></span> campos obligatorios.</div>
-</fieldset>
-<fieldset>
-<div class="mc-field-group">
-	<label for="mce-EMAIL">Correo electrónico:  <span class="fa fa-asterisk"></span>
-</label>
-	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Correo electrónico">
-</div>
-<input type="hidden" name="CONCESIO" value="Guadalajara">
-</fieldset>
-	<div id="mce-responses" class="clear">
-		<div class="response" id="mce-error-response" style="display:none">Ocurrio un problema.</div>
-		<div class="response" id="mce-success-response" style="display:none">Se envió tu mensaje</div>
-	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style="position: absolute; left: -5000px;"><input type="text" name="b_eb6adc86fe16ad4e6562f80c1_0136300666" tabindex="-1" value=""></div>
-    <div class="clear submit"><input type="submit" class="button red" value="Registrarse" name="subscribe" id="mc-embedded-subscribe"></div>
+        <fieldset>
+            <label for="mce-FNAME"><span style="color: red; font-size: 12px;"><span class="fa fa-asterisk"></span></span> Nombre completo:</label>
+            <input type="text" id="mce-FNAME" name="FNAME" placeholder="Nombre completo" data-validation-data="required|name">
+            <p class="invalid-message">Escribe tu nombre<span>&nbsp;</span></p>
+        </fieldset>
+        <fieldset>
+            <label for="mce-EMAIL"><span style="color: red; font-size: 12px;"><span class="fa fa-asterisk"></span></span> Correo electrónico:</label>
+            <input type="email" id="mce-EMAIL" name="EMAIL" placeholder="Correo electrónico" data-validation-data="required|email" novalidate="">
+            <p class="invalid-message">Escribe tu email<span>&nbsp;</span></p>
+        </fieldset>
+        <input type="hidden" name="CONCESIO" value="Guadalajara">
+        <div id="mce-responses" class="clear">
+            <div class="response" id="mce-error-response" style="display:none">Ocurrio un problema.</div>
+            <div class="response" id="mce-success-response" style="display:none">Se envió tu mensaje</div>
+        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;"><input type="text" name="b_eb6adc86fe16ad4e6562f80c1_0136300666" tabindex="-1" value=""></div>
+        <div class="clear submit"><input type="submit" class="button red" value="Registrarse" name="subscribe" id="mc-embedded-subscribe"></div>
     </div>
 </form>
 </div>
-
 <!--End mc_embed_signup-->
         </div>
     </div>
@@ -2459,7 +2453,15 @@ function trackOutboundLink( url ) {
 <script src="scripts/plugins/jquery.fancybox/jquery.fancybox-thumbs7997.js?_nc=20140313A"></script>
 <script src="scripts/suzuki/social-bar7997.js?_nc=20140313A"></script>
 <script src="scripts/sections/models/models7997.js?_nc=20140313A"></script>
-<script src="send-ajax.js"></script>
+<script>
+    $('input[name="chk-newsletter"]').on('change, click', function() {
+        if( $('input[name="chk-newsletter"]').is(':checked') ){
+            $('input[name="chk-newsletter"]').val('on');
+        }else{
+            $('input[name="chk-newsletter"]').val('off');
+        }
+    });
+</script>
 </body>
 
 </html>

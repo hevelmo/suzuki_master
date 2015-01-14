@@ -207,6 +207,12 @@ function enviar_newsletter(){
     $('html, body').stop().animate({scrollTop:target_top}, 1000);
     $("#newsletter_name").focus();
 }
+function enviar_newsletter_field_list(){
+    var target_offset = $("#mc-embedded-subscribe-form").position();
+    var target_top = target_offset.top;
+    $('html, body').stop().animate({scrollTop:target_top}, 1000);
+    $("#mce-FNAME").focus();
+}
 function push_ficha(modelo){
     alert(modelo);
     ga('send', 'event', 'Material de apoyo', 'Descarga', 'Ficha_' + modelo );
@@ -1478,6 +1484,54 @@ $(document).ready( function(){
                     if( data.status == 'ok' ){
                         $newsletter_email.val('');
                         $newsletter_name.val('');
+                        ga('send', 'event', 'Newsletter', 'Confirmacion', 'Footer', 600 );
+                    }
+                    alert( data.message );
+                },
+                url     : service_url
+            });
+        }
+
+    }
+    ////Newsletter form2
+    var $FNAME = $('#mce-FNAME');
+    var $EMAIL = $('#mce-EMAIL');
+
+    $FNAME.on('focusout', function(){
+        $.validate_input( $FNAME );
+    });
+    $EMAIL.on('focusout', function(){
+        $.validate_input( $EMAIL );
+    });
+
+    $.mc_embedded_subscribe_form = function(){
+
+        var form_errors = 0;
+        if( !$.validate_input( $EMAIL ) ){
+            form_errors++;
+            $EMAIL.focus();
+        }
+        if( !$.validate_input( $FNAME ) ){
+            form_errors++;
+            $FNAME.focus();
+        }
+
+        if( form_errors == 0 ){
+            var data = {
+                email       : $EMAIL.val(),
+                name        : $FNAME.val(),
+                source      : 'Footer'
+            };
+            var service_url = 'services/request/newsletter.json';
+            $.ajax({
+                cache       : false,
+                data        : data,
+                dataType    : 'json',
+                type        : 'post',
+                success     : function( data ){
+                    if( data.status == 'ok' ){
+                        $EMAIL.val('');
+                        $FNAME.val('');
                         ga('send', 'event', 'Newsletter', 'Confirmacion', 'Footer', 600 );
                     }
                     alert( data.message );
