@@ -59,7 +59,7 @@ util.geolocator.prototype.onSuccess = function(res) {};
 
 // Utilities for communicating with the InstatDrive API.
 util.api = function() {
-  this.prefix = '/api/';
+  this.prefix = 'api/index.html';
 };
 
 // Get a list of all concessionaires.

@@ -1,12 +1,11 @@
 var main_menu_available = false,
-        preselected_click = null,
+    preselected_click = null,
     menu_wait_section = null,
     header_section = '',
     menu_data = {
         models_menu : false,
         position    : 'fixed'
     },
-
     html_sections_html = {},
     init_hash = window.location.hash,
     concessionaires_data = null,
@@ -14,7 +13,7 @@ var main_menu_available = false,
     tdh_data = null,
     fuh_data = null,
     geo_options = null,
-    HAS_GEOLOCATION = true,
+    HAS_GEOLOCATION = false,
     HAS_INSTANTDRIVE = false,
     geo_ll = null,
     geo_timeout = null, cars_prices = null,
@@ -30,6 +29,7 @@ var cars_data = [
     { key: 'grand-vitara-especial'   , name: 'Grand Vitara Especial'  },
     { key: 's-cross'        , name: 'S-Cross'  }
 ];
+//var modelo, precio, enganche, plazo, plazo; modelo = $('h3.secondary-title').text(); $('input.fr_data').val(modelo); precio = $('p#funding_result_price').text(); $('input.fr_price').val(precio); enganche = $('p#funding_result_engagement').text(); $('input.fr_engagement').val(enganche); mensualidad = $('p#funding_result_monthly_payment').text(); $('input.fr_monthly_payment').val(mensualidad); plazo = $('p#funding_result_months').text(); $('input.fr_months').val(plazo);
 
 function instant_drive_available_time(){
     var time = new Date().getHours();
@@ -208,12 +208,6 @@ function enviar_newsletter(){
     $('html, body').stop().animate({scrollTop:target_top}, 1000);
     $("#newsletter_name").focus();
 }
-function enviar_newsletter_field_list(){
-    var target_offset = $("#mc-embedded-subscribe-form").position();
-    var target_top = target_offset.top;
-    $('html, body').stop().animate({scrollTop:target_top}, 1000);
-    $("#mce-FNAME").focus();
-}
 function push_ficha(modelo){
     alert(modelo);
     ga('send', 'event', 'Material de apoyo', 'Descarga', 'Ficha_' + modelo );
@@ -229,7 +223,7 @@ function fb_pixel( id, val){
     };
     var fpw = document.createElement('script');
     fpw.async = true;
-    fpw.src = '../connect.facebook.net/en_US/fp.js';
+    fpw.src = '//connect.facebook.net/en_US/fp.js';
     var ref =  document.getElementsByTagName('script')[0];
     ref.parentNode.insertBefore(fpw, ref);
     var image = new Image(1,1);
@@ -256,6 +250,9 @@ function showMeTheMoney(model_key){
         case 'grand-vitara':
             value = 322000.00;
             break;
+		case 'grand-vitara-especial':
+            value = 322000.00;
+            break;
         case 's-cross':
             value = 249900.00;
             break;
@@ -274,7 +271,6 @@ if($('html').attr('data-useragent') == 'MSIE 10.0,10.0'){
     $("body").addClass('IE10');
 }
 
-//AQUI SE USA EL EXPAND LINKS termina por la linea 470
 
 $(document).ready( function(){
     var $header_panel       =  $('#header-panel'),
@@ -291,7 +287,7 @@ $(document).ready( function(){
         }catch ( e ){
             console.log('Ocurrió un error con el evento de GA');
         }
-        fb_pixel( 'UA-56368711-1', '0.01');
+        fb_pixel( '6016795700971', '0.01');
     }
 
 
@@ -478,11 +474,6 @@ $(document).ready( function(){
                 height = 150;
                 bar_offset = { marginLeft:0, width:0};
                 break;
-            case 'vacio':
-                header_button = $('#vacio');
-                height = 150;
-                bar_offset = { marginLeft:0, width:0};
-                break;
             default:
                 header_section = '';
                 section = '';
@@ -587,7 +578,7 @@ $(document).ready( function(){
         }
         $.openPanel( section, params );
     });
-    $('body').prepend( patch_bar );
+    $body.prepend( patch_bar );
 
     // Open / close the mobile menu
     if (IS_MOBILE) {
@@ -688,9 +679,6 @@ $(document).ready( function(){
             case 'loading':
                 html = header_loading_screen;
                 break;
-            /*case 'vacio':
-                html =  header_vacio_screen;
-                break;*/
             default:
                 break;
         }
@@ -733,7 +721,7 @@ $(document).ready( function(){
         //newsletter      : ''
         //phone           : ''
         //source          : ''
-        var service_url = 'services/request/test_drive.json';
+        var service_url = '/services/request/test_drive';
         $("#header_send_td").attr('disabled','disabled').css({opacity:0.3});
         $("#models_send_td").attr('disabled','disabled');
         $.ajax({
@@ -902,15 +890,12 @@ $(document).ready( function(){
                 $.test_drive_select_car = function( k ){
                     var car_data    = get_car_data( k ),
                         $icons      = $('#car_select_preview .car_thumb_160 .car, #td_concessionaire_car .car_thumb_60 .car, #td_form_car .car_thumb_60 .car, #td_final_car .car_thumb_60 .car'),
-                        $car_texts  = $('#car_select_name h3, #td_concessionaire_car h3, #td_form_car h3, #td_final_car h3'),
-                        $input_car_text = $('#fr_model_car');
+                        $car_texts  = $('#car_select_name h3, #td_concessionaire_car h3, #td_form_car h3, #td_final_car h3');
 
 
                     tdh_data.key = k;
                     tdh_data.name = car_data.name;
                     $car_texts.text( tdh_data.name );
-                    $input_car_text.val( tdh_data.name );
-
 
                     $icons.removeClass();
                     $icons.addClass('car ' + tdh_data.key );
@@ -1083,13 +1068,9 @@ $(document).ready( function(){
 //                        total_pay       =  funding_data.price -  f_amount,
                         f_monthly_pay   = funding_core( total_pay, funding_data.months  );
                     $('#live-engagement,#funding_result_engagement,#funding_resume_engagement').html( moneyFormat( f_amount ) );
-                    $('#fr_car_engagement').val(moneyFormat( f_amount ));
                     $('#live-months,#funding_result_months,#funding_resume_months').html( funding_data.months + ' meses' );
-                    $('#fr_car_months').val(funding_data.months + ' meses');
                     $('#live-price,#funding_result_price,#funding_resume_price').html(  moneyFormat(  funding_data.price ) );
-                    $('#fr_car_price').val(moneyFormat(  funding_data.price ));
                     $('#funding_result_monthly_payment,#funding_resume_monthly_payment').html(  moneyFormat(  f_monthly_pay ) );
-                    $('#fr_car_monthly_payment').val(moneyFormat(  f_monthly_pay ));
                 }
                 $.funding_select_version = function( ii ){
                     var $elements;
@@ -1105,11 +1086,10 @@ $(document).ready( function(){
                 $.funding_select_car = function( k ){
                     var car_data    = get_car_data( k ),
                         $icons      = $('#car_select_preview .car_thumb_160 .car, #fu_adjust_car .car_thumb_60 .car, #funding_result_data .car_thumb_60 .car, #funding-resume-car .car_thumb_60 .car'),
-                        $car_texts  = $('#car_select_name h3, #step-nav-tab h3, #fu_adjust_car h3, #funding_result_data h3, #funding-resume-car h3'),
-                        $input_car_text = $('#fr_model_car');
+                        $car_texts  = $('#car_select_name h3, #step-nav-tab h3, #fu_adjust_car h3, #funding_result_data h3, #funding-resume-car h3');
 
                     fuh_data.key = k;
-                    var anio = '2015';
+                    var anio = '2014';
 //                    if(car_data.key == 'swift-sport'){
 //                        anio = '2013';
 //                    }
@@ -1119,7 +1099,6 @@ $(document).ready( function(){
                     $("#car_months_slider").slider({value: 6});
 
                     $car_texts.text( fuh_data.name );
-                    $input_car_text.val( fuh_data.name );
                     $icons.removeClass();
                     $icons.addClass('car ' + fuh_data.key );
                     var i0 = cars_prices.length, versions = null, i1, i2, tab_data;
@@ -1152,18 +1131,14 @@ $(document).ready( function(){
 
                 $.send_funding = function(){
                     var extended =  $('input[name="hfu_drive"]:checked').val(),
-                        $model_car   = $('#fr_model_car'),
-                        $car_price   = $('#fr_car_price'),
-                        $car_engagement   = $('#fr_car_engagement'),
-                        $fr_car_monthly_payment   = $('#fr_car_monthly_payment'),
-                        $fr_car_months   = $('#fr_car_months'),
                         $name   = $('#hfu_name'),
                         $lastname  = $('#hfu_lastname'),
                         $email  = $('#hfu_email'),
-                        /*$state  = $('#hfu_state_chzn_chzn'),
-                        $concessionaire  = $('#hfu_concessionaire_chzn'),*/
                         $tel    = $('#hfu_tel'),
                         form_errors = 0;
+
+
+
 
                     if( !$.validate_input( $email ) ){
                         form_errors++;
@@ -1177,31 +1152,18 @@ $(document).ready( function(){
                         form_errors++;
                         $name.focus();
                     }
-                    /*if( !$.validate_input( $state ) ){
-                        form_errors++;
-                        $name.focus();
-                    }
-                    if( !$.validate_input( $state ) ){
-                        form_errors++;
-                        $name.focus();
-                    }*/
-                    if( !$.validate_input( $concessionaire ) ){
-                        form_errors++;
-                        $name.focus();
-                    }
                     if( extended > 0 ){
 
                         if( !$.validate_input( $tel ) ){
                             form_errors++;
                             $tel.focus();
                         }
-
-                    } else{
+                    }else{
 
                         if( conce_d == null ){
                             console.log(conce_d);
                             form_errors++;
-                            /*$.error_bubble( $('#tdcss'), true);*/
+                            $.error_bubble( $('#tdcss'), true);
                             /*
                              if(  ){
 
@@ -1211,9 +1173,9 @@ $(document).ready( function(){
                              });
 
                              }*/
-                            /*$('#tdcs .chzn-container a').trigger('click').focus();*/
+                            $('#tdcs .chzn-container a').trigger('click').focus();
                         } else {
-                            /*$.error_bubble( $('#tdcss'), false );*/
+                            $.error_bubble( $('#tdcss'), false );
                         }
                         $.error_bubble( $tel, false );
                         //
@@ -1226,13 +1188,10 @@ $(document).ready( function(){
                             engagement  : funding_data.engagement,
                             months      : funding_data.months,
                             name        : $name.val(),
-                            /*lastname    : $lastname.val(),
-                            state       : $state.val(),*/
-                            concessionaire       : $concessionaire.val(),
+                            lastname    : $lastname.val(),
                             newsletter  : ('#funding-newsletter:checked').length,
                             source      : 'Funding'
                         }
-
 
                         $('#funding_resume_email').html( data.email );
                         $('#header-financiamiento li.step-nav-tabs').addClass( 'disabled' );
@@ -1245,7 +1204,7 @@ $(document).ready( function(){
                         }else{
                             ga('send', 'event', 'Financiamiento', 'Confirmacion_No_Prueba', 'Header_' + fuh_data.key, 0.012 * funding_data.price );
                         }
-                        var service_url = 'services/request/financing.json';
+                        var service_url = '/services/request/financing';
                         $.ajax({
                             cache       : false,
                             data        : data,
@@ -1283,37 +1242,22 @@ $(document).ready( function(){
                     var $input = $(this);
                     $.validate_input( $input );
                 });
-                /*$('#tdcs select#hfu_state_chzn_chzn').delegate('select, change', function( e ){
-                    var $input = $(this);
-                    $.validate_input( $input );
-                });
-                $('#tdcs select#hfu_concessionaire_chzn').delegate('select, change', function( e ){
-                    var $input = $(this);
-                    $.validate_input( $input );
-                });*/
                 $('#hfu_tel').on('focusout', function(){
                     var $input = $(this);
                     $.validate_input( $input );
                 });
                 $('input[name="hfu_drive"]').on('change, click', function( e ){
-                    if( $(this).val() > "No deseas manejarlo" ){
+                    if( $(this).val() > 0 ){
                         $('.funding-hidden-inputs').show();
                     }else{
                         $('.funding-hidden-inputs').hide();
-                    }
-                });
-                $('input[name="funding-newsletter"]').on('change, click', function( e ){
-                    if( $('input[name="funding-newsletter"]').is(':checked') ){
-                        $('input[name="funding-newsletter"]').val('on');
-                    }else{
-                        $('input[name="funding-newsletter"]').val('off');
                     }
                 });
                 $('#drive_no').trigger('click');
                 $('#tdr_end').on('click', function(){
                     $.openPanel('');
                 });
-                /*$('#tdcs').concessionaire_selector({
+                $('#tdcs').concessionaire_selector({
                     callback: function( data ){
                         conce_d = {
                             key: this.id,
@@ -1325,23 +1269,11 @@ $(document).ready( function(){
                 $('#tdcs').delegate('select','change',function(){
                     if( $('#tdcs select').length > 0 ){
                         if( $('#tdcs select').length > 1 ){
-                            $('#error_state').css({marginLeft:0});
+                            $('#error_concessionaire').css({marginLeft:250});
                         }
-                        console.log($('#tdcs select'));
-                        console.log($('#error_state'));
                     }
 
                 })
-                $('#tdcs').delegate('select','change',function(){
-                    if( $('#tdcs select').length > 0 ){
-                        if( $('#tdcs select').length > 1 ){
-                            $('#error_concessionaire').css({marginLeft:250});
-                        }
-                        console.log($('#tdcs select'));
-                        console.log($('#error_concessionaire'));
-                    }
-
-                })*/
 
                 $("#car_engagement_slider").slider({
                     change  : function( event, ui ) {
@@ -1475,7 +1407,7 @@ $(document).ready( function(){
                 name        : $newsletter_name.val(),
                 source      : 'Footer'
             };
-            var service_url = 'services/request/newsletter.json';
+            var service_url = '/services/request/newsletter';
             $.ajax({
                 cache       : false,
                 data        : data,
@@ -1485,54 +1417,6 @@ $(document).ready( function(){
                     if( data.status == 'ok' ){
                         $newsletter_email.val('');
                         $newsletter_name.val('');
-                        ga('send', 'event', 'Newsletter', 'Confirmacion', 'Footer', 600 );
-                    }
-                    alert( data.message );
-                },
-                url     : service_url
-            });
-        }
-
-    }
-    ////Newsletter form2
-    var $FNAME = $('#mce-FNAME');
-    var $EMAIL = $('#mce-EMAIL');
-
-    $FNAME.on('focusout', function(){
-        $.validate_input( $FNAME );
-    });
-    $EMAIL.on('focusout', function(){
-        $.validate_input( $EMAIL );
-    });
-
-    $.mc_embedded_subscribe_form = function(){
-
-        var form_errors = 0;
-        if( !$.validate_input( $EMAIL ) ){
-            form_errors++;
-            $EMAIL.focus();
-        }
-        if( !$.validate_input( $FNAME ) ){
-            form_errors++;
-            $FNAME.focus();
-        }
-
-        if( form_errors == 0 ){
-            var data = {
-                email       : $EMAIL.val(),
-                name        : $FNAME.val(),
-                source      : 'Footer'
-            };
-            var service_url = 'services/request/newsletter.json';
-            $.ajax({
-                cache       : false,
-                data        : data,
-                dataType    : 'json',
-                type        : 'post',
-                success     : function( data ){
-                    if( data.status == 'ok' ){
-                        $EMAIL.val('');
-                        $FNAME.val('');
                         ga('send', 'event', 'Newsletter', 'Confirmacion', 'Footer', 600 );
                     }
                     alert( data.message );
@@ -1585,127 +1469,121 @@ $(document).ready( function(){
             amplify.store( "geo_data" , geo_data );
         }
 
-        try{
+        // Creating an instance of the geolocation utility.
+        var gl = new util.geolocator();
+        // Callback. Fires to ask permissions
+        gl.onHasGeolocationAPI = function() {
 
-            // Creating an instance of the geolocation utility.
-            var gl = new util.geolocator();
-            // Callback. Fires to ask permissions
-            gl.onHasGeolocationAPI = function() {
-
-                geo_timeout = setTimeout( function(){
-                    clearTimeout( geo_timeout );
-                    $('body').prepend( geo_alert );
-                    var geo_listener = function(){
-                        var top = get_scroll_top();
-                        if( top > 0 ){
-                            $('#geolocation-fixed').removeClass('active');
-                        }else{
-                            $('#geolocation-fixed').addClass('disabled');
-                        }
-                    }
-                    $('#geolocalization-button').on('click', function( e ){
-                        e.preventDefault();
-                        $('#geolocation-fixed').removeClass('disable');
-                        var tomorrow = new Date();
-                        tomorrow.setDate(today.getDate()+1);
-                        var tomorrow_time = new Date( tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 0, 0, 0, 0).getTime();
-                        geo_data.time = tomorrow_time;
-                        amplify.store( "geo_data" , geo_data );
-                        $(window).off( 'scroll', geo_listener );
-                    });
-                    $(window).scroll( geo_listener );
-                    $(window).trigger('scroll');
-                }, 5000 );
-            };
-
-            // Callback. Fires if the user has *not* a geolocation API.
-            gl.onHasNotGeolocationAPI = function() {
+            geo_timeout = setTimeout( function(){
                 clearTimeout( geo_timeout );
-                if( $('#geolocation-fixed').length ){
-                    $('#geolocation-fixed').remove();
-                }
-                //Poner código de Analytics para Decir que no existe Geolocalización.
-            };
-            // Callback. Fires if the geolocation API was not successful
-            gl.onFailedToLocate = function() {
-                clearTimeout( geo_timeout );
-                clearTimeout( geo_timeout );
-                if( $('#geolocation-fixed').length ){
-                    $('#geolocation-fixed').remove();
-                }
-                //Poner código de Analytics para Decir que no aceptó Geolocalización.
-            };
-            // Callback. Fires if the geolocation API succeeded.
-            gl.onSuccess = function( response ) {
-                clearTimeout( geo_timeout );
-                if( $('#geolocation-fixed').length ){
-                    $('#geolocation-fixed').remove();
-                }
-                HAS_GEOLOCATION = true;
-                geo_ll = {
-                    latitude    : response.coords.latitude,
-                    longitude   : response.coords.longitude
-                }
-                if( geo_select_concessionaire_callback ){
-                    geo_select_concessionaire_callback();
-                }
-
-
-
-                function check_td( res ) {
-                    if (typeof res.data != 'undefined') {
-                        // Walking over each concessionaire.
-                        var con, con_pol, inside, ii = res.data.length;
-                        while ( ii-- ) {
-                            con = res.data[ii];
-                            // This is the enclosed.
-                            con_pol = area.getPolygon( con.geometry );
-                            inside  = area.isInsideArea( ll, con_pol );
-                            if ( inside ) {
-                                HAS_INSTANTDRIVE = true;
-                            }
-                        };
-                        //We are always inside Instant Drive Area for testing
-                        //HAS_INSTANTDRIVE = true;
-                        if( HAS_INSTANTDRIVE ){
-                            if( get_car_by_url() != null ){
-                                $('#model-test-drive-flag').css({backgroundImage:'url("/images/template/models/test-drive.png")'});
-                                var $ids = $('#instant-drive-section'),
-                                    $tds =  $('#text-drive-section');
-                                $('#test-drive-open').on('click', function( e ){
-                                    e.preventDefault();
-                                    $ids.hide();
-                                    $tds.hide().fadeIn();
-                                    $.scroll_to('prueba-de-manejo')
-                                });
-                                $ids.show();
-                                $tds.hide();
-                            }
-                        }
-                    };
-                };
-                var area = new util.area(),
-                    COMPANY_ID = '5176797fb3035b047f000001',
-                    api = new util.api(),
-                    ll = new google.maps.LatLng( geo_ll.latitude, geo_ll.longitude );
-                api.concessionaireList(COMPANY_ID, check_td);
-            };
-            var is_in_id =  (window.location.pathname.split('/'))[0] == 'instantdrive';
-            if( !is_in_id ){
-                if( instant_drive_available_time() ){
-                    if( now_time > geo_data.time ){
-                        // Fine, now that we defined all our callbacks we may proceed with geolocation.
-                        gl.locate();
+                $body.prepend( geo_alert );
+                var geo_listener = function(){
+                    var top = get_scroll_top();
+                    if( top > 0 ){
+                        $('#geolocation-fixed').removeClass('active');
+                    }else{
+                        $('#geolocation-fixed').addClass('active');
                     }
                 }
+                $('#geolocalization-button').on('click', function( e ){
+                    e.preventDefault();
+                    $('#geolocation-fixed').removeClass('active');
+                    var tomorrow = new Date();
+                    tomorrow.setDate(today.getDate()+1);
+                    var tomorrow_time = new Date( tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 0, 0, 0, 0).getTime();
+                    geo_data.time = tomorrow_time;
+                    amplify.store( "geo_data" , geo_data );
+                    $(window).off( 'scroll', geo_listener );
+                });
+                $(window).scroll( geo_listener );
+                $(window).trigger('scroll');
+            }, 5000 );
+        };
+
+        // Callback. Fires if the user has *not* a geolocation API.
+        gl.onHasNotGeolocationAPI = function() {
+            clearTimeout( geo_timeout );
+            if( $('#geolocation-fixed').length ){
+                $('#geolocation-fixed').remove();
+            }
+            //Poner código de Analytics para Decir que no existe Geolocalización.
+        };
+        // Callback. Fires if the geolocation API was not successful
+        gl.onFailedToLocate = function() {
+            clearTimeout( geo_timeout );
+            clearTimeout( geo_timeout );
+            if( $('#geolocation-fixed').length ){
+                $('#geolocation-fixed').remove();
+            }
+            //Poner código de Analytics para Decir que no aceptó Geolocalización.
+        };
+        // Callback. Fires if the geolocation API succeeded.
+        gl.onSuccess = function( response ) {
+            clearTimeout( geo_timeout );
+            if( $('#geolocation-fixed').length ){
+                $('#geolocation-fixed').remove();
+            }
+            HAS_GEOLOCATION = true;
+            geo_ll = {
+                latitude    : response.coords.latitude,
+                longitude   : response.coords.longitude
+            }
+            if( geo_select_concessionaire_callback ){
+                geo_select_concessionaire_callback();
             }
 
-        }catch( error ){
-            console.warn('  No hay Instant Drive =(')
+
+
+            function check_td( res ) {
+                if (typeof res.data != 'undefined') {
+                    // Walking over each concessionaire.
+                    var con, con_pol, inside, ii = res.data.length;
+                    while ( ii-- ) {
+                        con = res.data[ii];
+                        // This is the enclosed.
+                        con_pol = area.getPolygon( con.geometry );
+                        inside  = area.isInsideArea( ll, con_pol );
+                        if ( inside ) {
+                            HAS_INSTANTDRIVE = true;
+                        }
+                    };
+                    //We are always inside Instant Drive Area for testing
+                    //HAS_INSTANTDRIVE = true;
+                    if( HAS_INSTANTDRIVE ){
+                        if( get_car_by_url() != null ){
+                            $('#model-test-drive-flag').css({backgroundImage:'url("/images/template/models/test-drive.png")'});
+                            var $ids = $('#instant-drive-section'),
+                                $tds =  $('#text-drive-section');
+                            $('#test-drive-open').on('click', function( e ){
+                                e.preventDefault();
+                                $ids.hide();
+                                $tds.hide().fadeIn();
+                                $.scroll_to('prueba-de-manejo')
+                            });
+                            $ids.show();
+                            $tds.hide();
+                        }
+                    }
+                };
+            };
+            var area = new util.area(),
+                COMPANY_ID = '5176797fb3035b047f000001',
+                api = new util.api(),
+                ll = new google.maps.LatLng( geo_ll.latitude, geo_ll.longitude );
+            api.concessionaireList(COMPANY_ID, check_td);
+        };
+        var is_in_id =  (window.location.pathname.split('/'))[0] == 'instantdrive';
+        if( !is_in_id ){
+            if( instant_drive_available_time() ){
+                if( now_time > geo_data.time ){
+                    // Fine, now that we defined all our callbacks we may proceed with geolocation.
+                    gl.locate();
+                }
+            }
         }
     }
     init_geo_core();
-//    $('body').append( preload_header_assets ).append( dummy_alerts );
+    $body.append( preload_header_assets ).append( dummy_alerts );
 
 
     //Auto animates if a hash param exists
@@ -1717,8 +1595,7 @@ $(document).ready( function(){
                 $.scroll_to( init_hash );
             }, 1000);
         }else if(init_hash == 'prueba-de-manejo'){
-            //alert(init_hash);
-            //$.openPanel('test-drive');
+            $.openPanel('test-drive');
         }else if(init_hash == 'modelos'){
             $.openPanel('models');
         }
@@ -1748,6 +1625,45 @@ $(document).ready( function(){
     if(window.location.hash == '#mi-suzuki') {
         console.log(window.location.hash);
         $('#header-owners-button').trigger('click');
-    };
+    }
     //$('#header-owners-button').trigger('click');
+
+    //Scross & Bage popover
+    var pop_over_template = '<div id="{{id}}" class="dummy-alert badge"><p class="alert-message"><h2>{{title}}</h2>{{{message}}}</p></div>',
+        messages_data = [
+            {
+//                id : 'super_brands',
+//                title : 'SUPERBRANDS',
+//                message : '<p>Suzuki fue nombrado como una "Gran Marca de México"en base a los siguientes criterios: longevidad, presencia en el mercado y lealtad de sus consumidores.</p>'
+            }, {
+//                id : 'auto_show_tv',
+//                title : 'AUTO SHOW TV',
+//                message : '<p>Este prestigiado programa de análisis automotriz nombra a S-CROSS como el mejor Crossover por sus cualidades dinámicas, eficiencia energética y alto nivel de equipamiento.</p>
+            },  {
+//                id : 'master_test',
+//                title : 'MASTER TEST',
+//                message : '<p>6 pruebas dinámicas donde se llevan al límite las cualidades del vehículo, en consecuencia S-CROSS el mejor Crossover en sentido dinámico y de seguridad.</p>'
+            }
+        ],
+        html_messages = '',
+        i0;
+    i0 = messages_data.length;
+
+    while( i0-- ){
+        html_messages += Mustache.render( pop_over_template , messages_data[ i0 ]);
+    }
+    $body.append( html_messages).delegate('a.popoverbox', 'mouseover mouseout click', function( event ){
+        var $this = $(this),
+            target = $this.data('target'),
+            $target = $( target );
+        if( event.type === 'mouseover'){
+            $target.stop().addClass('show').hide().fadeIn( 200 );
+        }else if( event.type === 'mouseout'){
+            $target.stop().removeClass('show').show().fadeOut( 200 );
+        }else{
+            if( $this.attr('src').length <= 1 ){
+                event.preventDefault();
+            }
+        }
+    });
 });
