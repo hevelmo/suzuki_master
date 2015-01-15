@@ -232,7 +232,7 @@ $(document).ready(function(){
         padding     : 0,
         width		: '70%'
     });
-    /*if( IS_MOBILE ) {
+    if( IS_MOBILE ) {
 
         var margin = 0;
         var menu_cars = $("#menu-cars-home");
@@ -265,7 +265,7 @@ $(document).ready(function(){
         $video_home_cross.remove();
         $("#slider-car4, #home-scross, .section-title.hide_s-cross").remove();
         //$("#menu-cars-home").prepend('<div id="slider-car4" class="item car-4"><div class="slider-car-sprite"></div><a href="/s-cross"><h3>S-Cross</h3></a></div>');
-    }*/
+    }
 
 
 });

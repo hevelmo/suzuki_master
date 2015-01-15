@@ -3565,8 +3565,8 @@ font-family: 'Suzuki-HeadlineRegular';display:inline-block;}
         font-weight:200;
         font-size:20px;
         line-height:22px;
-        text-transform:uppercase;
-    }
+        text-transform:uppercase
+   ; }
     #header-prueba-manejo .test-drive-description, #header-financiamiento .test-drive-description {
         line-height:19px;
         margin:20px 0;
@@ -4452,15 +4452,6 @@ body {
     }
     #footer-wrapper #footer-content .footer-row .footer-legals .last {
         padding:0 0 0 3px !important;
-    }
-
-
-    #footer-wrapper #footer-content .footer-row .footer-copyright, #footer-wrapper #footer-content .footer-row .footer-legals {
-        text-align: center;
-        width: 100%;
-    }
-    #footer-wrapper #footer-content .footer-row .footer-copyright ul.links, #footer-wrapper #footer-content .footer-row .footer-legals ul.links {
-        margin-left: 12%;
     }
 }
 @media (max-width: 959px) {

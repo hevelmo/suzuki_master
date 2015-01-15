@@ -17,8 +17,7 @@ var main_menu_available = false,
     HAS_GEOLOCATION = true,
     HAS_INSTANTDRIVE = false,
     geo_ll = null,
-    geo_timeout = null, cars_prices = null,
-    $body = $('body');
+    geo_timeout = null, cars_prices = null;
 
 var cars_data = [
     { key: 'swift-sport'    , name: 'Swift Sport'   },
@@ -54,7 +53,7 @@ function get_car_data( k ){
     return null;
 }
 function get_car_by_url(){
-    var root = window.location.pathname.split('/');
+    var root = window.location.pathname.split('index.html');
     return get_car_data( root[1] );
 }
 function get_car_by_hash(){
@@ -297,7 +296,7 @@ $(document).ready( function(){
 
     //Validates an input with data-validation-data attribute and displays or hide bubble meesage
     $.validate_input = function( $input ){
-        if( $input.is('input') || $input.is('textarea') ){
+        if( $input.is('input') || $input.is('textarea') || $input.is('select') ){
             var val_data    = $input.data('validation-data').split('|'),
                 required    = val_data.indexOf('required');
             if( required >= 0 ){
@@ -688,9 +687,9 @@ $(document).ready( function(){
             case 'loading':
                 html = header_loading_screen;
                 break;
-            /*case 'vacio':
+            case 'vacio':
                 html =  header_vacio_screen;
-                break;*/
+                break;
             default:
                 break;
         }
@@ -1585,123 +1584,117 @@ $(document).ready( function(){
             amplify.store( "geo_data" , geo_data );
         }
 
-        try{
+        // Creating an instance of the geolocation utility.
+        var gl = new util.geolocator();
+        // Callback. Fires to ask permissions
+        gl.onHasGeolocationAPI = function() {
 
-            // Creating an instance of the geolocation utility.
-            var gl = new util.geolocator();
-            // Callback. Fires to ask permissions
-            gl.onHasGeolocationAPI = function() {
-
-                geo_timeout = setTimeout( function(){
-                    clearTimeout( geo_timeout );
-                    $('body').prepend( geo_alert );
-                    var geo_listener = function(){
-                        var top = get_scroll_top();
-                        if( top > 0 ){
-                            $('#geolocation-fixed').removeClass('active');
-                        }else{
-                            $('#geolocation-fixed').addClass('disabled');
-                        }
-                    }
-                    $('#geolocalization-button').on('click', function( e ){
-                        e.preventDefault();
-                        $('#geolocation-fixed').removeClass('disable');
-                        var tomorrow = new Date();
-                        tomorrow.setDate(today.getDate()+1);
-                        var tomorrow_time = new Date( tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 0, 0, 0, 0).getTime();
-                        geo_data.time = tomorrow_time;
-                        amplify.store( "geo_data" , geo_data );
-                        $(window).off( 'scroll', geo_listener );
-                    });
-                    $(window).scroll( geo_listener );
-                    $(window).trigger('scroll');
-                }, 5000 );
-            };
-
-            // Callback. Fires if the user has *not* a geolocation API.
-            gl.onHasNotGeolocationAPI = function() {
+            geo_timeout = setTimeout( function(){
                 clearTimeout( geo_timeout );
-                if( $('#geolocation-fixed').length ){
-                    $('#geolocation-fixed').remove();
-                }
-                //Poner código de Analytics para Decir que no existe Geolocalización.
-            };
-            // Callback. Fires if the geolocation API was not successful
-            gl.onFailedToLocate = function() {
-                clearTimeout( geo_timeout );
-                clearTimeout( geo_timeout );
-                if( $('#geolocation-fixed').length ){
-                    $('#geolocation-fixed').remove();
-                }
-                //Poner código de Analytics para Decir que no aceptó Geolocalización.
-            };
-            // Callback. Fires if the geolocation API succeeded.
-            gl.onSuccess = function( response ) {
-                clearTimeout( geo_timeout );
-                if( $('#geolocation-fixed').length ){
-                    $('#geolocation-fixed').remove();
-                }
-                HAS_GEOLOCATION = true;
-                geo_ll = {
-                    latitude    : response.coords.latitude,
-                    longitude   : response.coords.longitude
-                }
-                if( geo_select_concessionaire_callback ){
-                    geo_select_concessionaire_callback();
-                }
-
-
-
-                function check_td( res ) {
-                    if (typeof res.data != 'undefined') {
-                        // Walking over each concessionaire.
-                        var con, con_pol, inside, ii = res.data.length;
-                        while ( ii-- ) {
-                            con = res.data[ii];
-                            // This is the enclosed.
-                            con_pol = area.getPolygon( con.geometry );
-                            inside  = area.isInsideArea( ll, con_pol );
-                            if ( inside ) {
-                                HAS_INSTANTDRIVE = true;
-                            }
-                        };
-                        //We are always inside Instant Drive Area for testing
-                        //HAS_INSTANTDRIVE = true;
-                        if( HAS_INSTANTDRIVE ){
-                            if( get_car_by_url() != null ){
-                                $('#model-test-drive-flag').css({backgroundImage:'url("/images/template/models/test-drive.png")'});
-                                var $ids = $('#instant-drive-section'),
-                                    $tds =  $('#text-drive-section');
-                                $('#test-drive-open').on('click', function( e ){
-                                    e.preventDefault();
-                                    $ids.hide();
-                                    $tds.hide().fadeIn();
-                                    $.scroll_to('prueba-de-manejo')
-                                });
-                                $ids.show();
-                                $tds.hide();
-                            }
-                        }
-                    };
-                };
-                var area = new util.area(),
-                    COMPANY_ID = '5176797fb3035b047f000001',
-                    api = new util.api(),
-                    ll = new google.maps.LatLng( geo_ll.latitude, geo_ll.longitude );
-                api.concessionaireList(COMPANY_ID, check_td);
-            };
-            var is_in_id =  (window.location.pathname.split('/'))[0] == 'instantdrive';
-            if( !is_in_id ){
-                if( instant_drive_available_time() ){
-                    if( now_time > geo_data.time ){
-                        // Fine, now that we defined all our callbacks we may proceed with geolocation.
-                        gl.locate();
+                $('body').prepend( geo_alert );
+                var geo_listener = function(){
+                    var top = get_scroll_top();
+                    if( top > 0 ){
+                        $('#geolocation-fixed').removeClass('active');
+                    }else{
+                        $('#geolocation-fixed').addClass('disabled');
                     }
                 }
+                $('#geolocalization-button').on('click', function( e ){
+                    e.preventDefault();
+                    $('#geolocation-fixed').removeClass('disable');
+                    var tomorrow = new Date();
+                    tomorrow.setDate(today.getDate()+1);
+                    var tomorrow_time = new Date( tomorrow.getFullYear(), tomorrow.getMonth(), tomorrow.getDate(), 0, 0, 0, 0).getTime();
+                    geo_data.time = tomorrow_time;
+                    amplify.store( "geo_data" , geo_data );
+                    $(window).off( 'scroll', geo_listener );
+                });
+                $(window).scroll( geo_listener );
+                $(window).trigger('scroll');
+            }, 5000 );
+        };
+
+        // Callback. Fires if the user has *not* a geolocation API.
+        gl.onHasNotGeolocationAPI = function() {
+            clearTimeout( geo_timeout );
+            if( $('#geolocation-fixed').length ){
+                $('#geolocation-fixed').remove();
+            }
+            //Poner código de Analytics para Decir que no existe Geolocalización.
+        };
+        // Callback. Fires if the geolocation API was not successful
+        gl.onFailedToLocate = function() {
+            clearTimeout( geo_timeout );
+            clearTimeout( geo_timeout );
+            if( $('#geolocation-fixed').length ){
+                $('#geolocation-fixed').remove();
+            }
+            //Poner código de Analytics para Decir que no aceptó Geolocalización.
+        };
+        // Callback. Fires if the geolocation API succeeded.
+        gl.onSuccess = function( response ) {
+            clearTimeout( geo_timeout );
+            if( $('#geolocation-fixed').length ){
+                $('#geolocation-fixed').remove();
+            }
+            HAS_GEOLOCATION = true;
+            geo_ll = {
+                latitude    : response.coords.latitude,
+                longitude   : response.coords.longitude
+            }
+            if( geo_select_concessionaire_callback ){
+                geo_select_concessionaire_callback();
             }
 
-        }catch( error ){
-            console.warn('  No hay Instant Drive =(')
+
+
+            function check_td( res ) {
+                if (typeof res.data != 'undefined') {
+                    // Walking over each concessionaire.
+                    var con, con_pol, inside, ii = res.data.length;
+                    while ( ii-- ) {
+                        con = res.data[ii];
+                        // This is the enclosed.
+                        con_pol = area.getPolygon( con.geometry );
+                        inside  = area.isInsideArea( ll, con_pol );
+                        if ( inside ) {
+                            HAS_INSTANTDRIVE = true;
+                        }
+                    };
+                    //We are always inside Instant Drive Area for testing
+                    //HAS_INSTANTDRIVE = true;
+                    if( HAS_INSTANTDRIVE ){
+                        if( get_car_by_url() != null ){
+                            $('#model-test-drive-flag').css({backgroundImage:'url("/images/template/models/test-drive.png")'});
+                            var $ids = $('#instant-drive-section'),
+                                $tds =  $('#text-drive-section');
+                            $('#test-drive-open').on('click', function( e ){
+                                e.preventDefault();
+                                $ids.hide();
+                                $tds.hide().fadeIn();
+                                $.scroll_to('prueba-de-manejo')
+                            });
+                            $ids.show();
+                            $tds.hide();
+                        }
+                    }
+                };
+            };
+            var area = new util.area(),
+                COMPANY_ID = '5176797fb3035b047f000001',
+                api = new util.api(),
+                ll = new google.maps.LatLng( geo_ll.latitude, geo_ll.longitude );
+            api.concessionaireList(COMPANY_ID, check_td);
+        };
+        var is_in_id =  (window.location.pathname.split('index.html'))[0] == 'instantdrive';
+        if( !is_in_id ){
+            if( instant_drive_available_time() ){
+                if( now_time > geo_data.time ){
+                    // Fine, now that we defined all our callbacks we may proceed with geolocation.
+                    gl.locate();
+                }
+            }
         }
     }
     init_geo_core();
@@ -1717,8 +1710,8 @@ $(document).ready( function(){
                 $.scroll_to( init_hash );
             }, 1000);
         }else if(init_hash == 'prueba-de-manejo'){
-            //alert(init_hash);
-            //$.openPanel('test-drive');
+            alert(init_hash);
+            $.openPanel('test-drive');
         }else if(init_hash == 'modelos'){
             $.openPanel('models');
         }
