@@ -73,7 +73,7 @@
 						<tr>
 							<td colspan='3' height='78' bgcolor='#CA272C' width='11'>
 								<p style='color:#ffffff;font-family:Lato,Arial,sans-serif;font-size:24px;text-align:center;padding:0'>
-									Solicitud de prueba de manejo
+									Solicitud de prueba de manejo - Newsletter
 								</p>
 							</td>
 						</tr>
@@ -318,7 +318,7 @@
 									<tr>
 										<td height='20' valign='top' width='250'>
 											<strong style='color: #0059a9; font-family: Lato, Arial, sans-serif; font-size: 12px; font-weight: 900; text-align: right; padding: 0'>
-												Desea realizar prueba de manejo :
+												Desea realizar prueba de manejo:
 											</strong>
 										</td>
 										<td height='20' valign='top'>

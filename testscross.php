@@ -42,8 +42,8 @@ header ("location: index.html");
 	var_dump($img_model);
 	$mail_origin = $mail;
 
-	//$to = 'heriberto@medigraf.com.mx';
-	$to = 'mercadotecnia@suzuki-lm.com.mx';
+	$to = 'heriberto@medigraf.com.mx';
+	//$to = 'mercadotecnia@suzuki-lm.com.mx';
 	$subject = "Agendar prueba de manejo de Nuevo S-Cross - Suzuki Guadalajara.";
 
 	$message   .= '<html>
@@ -91,7 +91,7 @@ header ("location: index.html");
 											<td rowspan="2" style="border:1px solid #ebe9ea;border-top:0" bgcolor="#ffffff">
 												<table style="padding:15px 60px 15px" border="0" cellpadding="0" cellspacing="0" width="600">
 													<tbody>
-													<tr>
+														<tr>
 							 								<td height="0" valign="top">
 							 									<p style="color: #000000; font-family: Lato, Arial, sans-serif; font-size: 13px; text-align: left; padding: 0"></p>
 							 								</td>
@@ -193,8 +193,8 @@ header ("location: index.html");
 	$headers = "From: ". $nombre ." ". $apellido ."<" . $mail_origin . ">"."\r\n";
 	$headers .= "MIME-Version: 1.0\r\n";
 	$headers .= "Content-type: text/html; charset=ISO-8859-1\r\n";
-	//$headers .= 'Bcc:  cold_space@hotmail.com' . "\r\n";
-	$headers .= 'Bcc:  mercadotecnia@suzuki-lm.com.mx' . "\r\n";
+	$headers .= 'Bcc:  cold_space@hotmail.com' . "\r\n";
+	//$headers .= 'Bcc:  mercadotecnia@suzuki-lm.com.mx' . "\r\n";
 
 	$sent =  mail($to,$subject,$message,$headers);
 
