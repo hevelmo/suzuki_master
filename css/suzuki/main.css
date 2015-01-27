@@ -1,5 +1,6 @@
 ﻿
 @import url("../webfonts/suzuki-webfontkit/stylesheet.css");
+@import url("../webfonts/fontawesome/font-awesome.css");
 
 .hide{display:none!important}.show{display:block!important}
 
@@ -4615,4 +4616,28 @@ body {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
+}
+@media only screen and (max-device-width: 767px) {
+    .confirm {
+        position: relative;
+        top: -31px;
+        left: 56px;
+    }
+    .form-resp {
+        margin: -54px auto 20px;
+    }
+    .new_promo_input {
+        background: rgba(255, 255, 255, 0.17);
+        width: 220px;
+        max-width: 220px;
+        height: 30px;
+        margin: 0px auto -5px;
+        padding: 0px 12px;
+    }
+    .new_promo_submit {
+        width: 68%;
+        margin: 0 auto;
+        display: block;
+        border-radius: none;
+    }
 }

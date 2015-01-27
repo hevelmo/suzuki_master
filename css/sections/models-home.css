@@ -939,8 +939,16 @@ table.suzuki-grid span,table.suzuki-grid p {
 #instant-drive-section {
 	display: none !important
 }
-
+.margin-description {
+	margin-top: -75px;
+}
+.hidden-title-wrapper {
+	display: block;
+}
 @media only screen and (max-device-width: 767px) {
+	.hidden-title-wrapper {
+		display: none;
+	}
 	.promotion .specifications-wrapper {
         height:auto
     }

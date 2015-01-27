@@ -6,7 +6,6 @@ var main_menu_available = false,
         models_menu : false,
         position    : 'fixed'
     },
-
     html_sections_html = {},
     init_hash = window.location.hash,
     concessionaires_data = null,
@@ -27,10 +26,8 @@ var cars_data = [
     { key: 'sx4-sedan'      , name: 'SX4 Sedán'     },
     { key: 'kizashi'        , name: 'Kizashi'       },
     { key: 'grand-vitara'   , name: 'Grand Vitara'  },
-    { key: 'grand-vitara-especial'   , name: 'Grand Vitara Especial'  },
     { key: 's-cross'        , name: 'S-Cross'  }
 ];
-
 function instant_drive_available_time(){
     var time = new Date().getHours();
     return ( time > 10 && time < 18 );
@@ -291,7 +288,7 @@ $(document).ready( function(){
         }catch ( e ){
             console.log('Ocurrió un error con el evento de GA');
         }
-        fb_pixel( 'UA-56368711-1', '0.01');
+        fb_pixel( '6016795700971', '0.01');
     }
 
 
@@ -478,11 +475,11 @@ $(document).ready( function(){
                 height = 150;
                 bar_offset = { marginLeft:0, width:0};
                 break;
-            case 'vacio':
+            /*case 'vacio':
                 header_button = $('#vacio');
                 height = 150;
                 bar_offset = { marginLeft:0, width:0};
-                break;
+                break;*/
             default:
                 header_section = '';
                 section = '';
@@ -587,7 +584,8 @@ $(document).ready( function(){
         }
         $.openPanel( section, params );
     });
-    $('body').prepend( patch_bar );
+    //$('body').prepend( patch_bar );
+    $body.prepend( patch_bar );
 
     // Open / close the mobile menu
     if (IS_MOBILE) {
@@ -1750,4 +1748,43 @@ $(document).ready( function(){
         $('#header-owners-button').trigger('click');
     };
     //$('#header-owners-button').trigger('click');
+
+    //Scross & Bage popover
+   /* var pop_over_template = '<div id="{{id}}" class="dummy-alert badge"><p class="alert-message"><h2>{{title}}</h2>{{{message}}}</p></div>',
+        messages_data = [
+            {
+                id : 'super_brands',
+                title : 'SUPERBRANDS',
+                message : '<p>Suzuki fue nombrado como una "Gran Marca de México"en base a los siguientes criterios: longevidad, presencia en el mercado y lealtad de sus consumidores.</p>'
+            }, {
+                id : 'auto_show_tv',
+                title : 'AUTO SHOW TV',
+                message : '<p>Este prestigiado programa de análisis automotriz nombra a S-CROSS como el mejor Crossover por sus cualidades dinámicas, eficiencia energética y alto nivel de equipamiento.</p>'
+            },  {
+                id : 'master_test',
+                title : 'MASTER TEST',
+                message : '<p>6 pruebas dinámicas donde se llevan al límite las cualidades del vehículo, en consecuencia S-CROSS el mejor Crossover en sentido dinámico y de seguridad.</p>'
+            }
+        ],
+        html_messages = '',
+        i0;
+    i0 = messages_data.length;
+
+    while( i0-- ){
+        html_messages += Mustache.render( pop_over_template , messages_data[ i0 ]);
+    }
+    $body.append( html_messages).delegate('a.popoverbox', 'mouseover mouseout click', function( event ){
+        var $this = $(this),
+            target = $this.data('target'),
+            $target = $( target );
+        if( event.type === 'mouseover'){
+            $target.stop().addClass('show').hide().fadeIn( 200 );
+        }else if( event.type === 'mouseout'){
+            $target.stop().removeClass('show').show().fadeOut( 200 );
+        }else{
+            if( $this.attr('src').length <= 1 ){
+                event.preventDefault();
+            }
+        }
+    });*/
 });

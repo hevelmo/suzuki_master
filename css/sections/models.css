@@ -1993,31 +1993,84 @@ table.suzuki-grid tbody tr td.light p {
         overflow:visible !important
     }
     #catalog-swift-sport .car_model {
-        background-position:0 0
+        /*background-position:0 0;*/
+        background-position: 0 0;
+        background: url("../../images/template/common/header/suzuki_swift-sport.png") no-repeat;
+        width: 105px;
+        height: 65px;
+        background-size: 100%;
     }
     #catalog-swift .car_model {
-        background-position:-103px 0
+        /*background-position:-103px 0*/
+        background-position: 0 0;
+        background: url("../../images/template/common/header/suzuki_swift.png") no-repeat;
+        width: 105px;
+        height: 65px;
+        background-size: 100%;
     }
     #catalog-sx4-crossover .car_model {
-        background-position:-206px 0
+        /*background-position:-206px 0*/
+        background-position: 0 0;
+        background: url("../../images/template/common/header/suzuki_sx4-crossover.png") no-repeat;
+        width: 105px;
+        height: 65px;
+        background-size: 100%;
     }
     #catalog-sx4-sedan .car_model {
-        background-position:-309px 0
+        /*background-position:-309px 0*/
+        background-position: 0 0;
+        background: url("../../images/template/common/header/suzuki_sx4-sedan.png") no-repeat;
+        width: 105px;
+        height: 65px;
+        background-size: 100%;
     }
     #catalog-kizashi .car_model {
-        background-position:-412px 0
+        /*background-position:-412px 0*/
+        background-position: 0 0;
+        background: url("../../images/template/common/header/suzuki_kizashi.png") no-repeat;
+        width: 105px;
+        height: 65px;
+        background-size: 100%;
     }
     #catalog-grand-vitara .car_model {
-        background-position:-515px 0
+        /*background-position:-515px 0*/
+        background-position: 0 0;
+        background: url("../../images/template/common/header/suzuki_grand-vitara.png") no-repeat;
+        width: 105px;
+        height: 65px;
+        background-size: 100%;
     }
     #catalog-s-cross .car_model {
-        background-position:-515px 0
+        /*background-position:-515px 0*/
+        background-position: 0 0;
+        background: url("../../images/template/common/header/suzuki_s-cross.png") no-repeat;
+        width: 105px;
+        height: 65px;
+        background-size: 100%;
     }
     #model-section-arrow {
         display:none !important
     }
     #instant-drive-section {
         display:none !important
+    }
+    .catalog_switch_menu .catalog_cars_wrapper .catalog_car.swift {
+        background-position:9px -56px
+    }
+    .catalog_switch_menu .catalog_cars_wrapper .catalog_car.sx4-crossover {
+        background-position:9px -106px
+    }
+    .catalog_switch_menu .catalog_cars_wrapper .catalog_car.sx4-sedan {
+        background-position:9px -156px
+    }
+    .catalog_switch_menu .catalog_cars_wrapper .catalog_car.kizashi {
+        background-position:9px -206px
+    }
+    .catalog_switch_menu .catalog_cars_wrapper .catalog_car.grand-vitara {
+        background-position:9px -256px
+    }
+    .catalog_switch_menu .catalog_cars_wrapper .catalog_car.s-cross {
+        background-position:9px -308px
     }
 }
 @media only screen and (max-device-width: 320px) {
