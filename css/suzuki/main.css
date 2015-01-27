@@ -963,6 +963,12 @@ a:hover, a:focus {
 .visible-desktop {
     display:inherit !important;
 }
+.hidden-mobil {
+    display: block !important;
+}
+.hidden-nomobil {
+    display: none !important;
+}
 @media (min-width: 768px) and (max-width: 979px) {
     .hidden-desktop {
         display:inherit !important;
@@ -975,6 +981,12 @@ a:hover, a:focus {
     }
     .hidden-tablet {
         display:none !important;
+    }
+    .hidden-mobil {
+        display: inherit !important;
+    }
+    .hidden-nomobil {
+        display: none !important;
     }
 }
 @media (max-width: 767px) {
@@ -990,6 +1002,12 @@ a:hover, a:focus {
     .hidden-phone {
         display:none !important;
     }
+    .hidden-mobil {
+        display: none !important;
+    }
+    .hidden-nomobil {
+        display: block !important;
+    }
 }
 .visible-print {
     display:none !important;
@@ -1003,6 +1021,12 @@ a:hover, a:focus {
     }
 }
 @media (max-width: 767px) {
+    .hidden-mobil {
+        display: none !important;
+    }
+    .hidden-nomobil {
+        display: block !important;
+    }
     .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
         margin-left:-20px;
         margin-right:-20px;
