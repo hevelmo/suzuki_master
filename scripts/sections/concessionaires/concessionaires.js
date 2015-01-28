@@ -5,7 +5,9 @@ $( document ).ready( function(){
     var script_url = '/services/concessionaires' ;
     var title_box = null;
     var concessionaire_preselected = 0;
+    var concessionaire_preselected_n = 0;
     var concessionaire_detail_selected = false;
+    var concessionaire_detail_selected_n = false;
     var current_concessionaire = '', current_concessionaire_id = -1, concessionaire_open = false,
         concessionaire_template = '<div class="data-wrapper">' +
             '<h1 id="c-title">{{name}}</h1>'+
@@ -40,7 +42,7 @@ $( document ).ready( function(){
         }
         if( change ){
             try{
-                window.history.pushState( null , cc.name, "/concesionarias/suzuki-" + key );
+                window.history.pushState( null , cc.name, "/concesionarias/suzuki-" + key + ".html");
             }catch( e ){ }
         }
         $("#concessionaires-data").addClass('active');
@@ -82,7 +84,7 @@ $( document ).ready( function(){
         if (IS_MOBILE) {
             $("#concessionaires-list").hide();
             $("#concessionaires-data").css({
-                height: 'auto',
+                //height: 'auto',
                 paddingTop: '130px'
             });
         }
@@ -233,9 +235,9 @@ $( document ).ready( function(){
         $("#back-list-concessionaires").click(function (e) {
             e.preventDefault();
             concessionaire_preselected = 0;
-            concessionaire_detail_selected = true;
+            concessionaire_detail_selected = false;
             $("#concessionaires-data").css({
-                height: '0',
+                //height: '0',
                 paddingTop: '0'
             });
             $(".concessionaire-search").hide();
@@ -297,6 +299,68 @@ $( document ).ready( function(){
         var ma_w = wi_w - ls_w - da_w;
         $("#concessionaires-data").width( da_w );
         $("#concessionaires-map" ).width( ma_w );
+    }
+    $(window).resize(function() {
+        $.adjust_map_width();
+    });
+    $(document).resize(function() {
+        $.adjust_map_width();
+    });
+    $.adjust_map_width();
+
+    /* Mapa other mobil */
+    function initialize_map_n(){
+        var c_preselected_n, map_latLon_n, map_center_n;
+        try{
+            c_preselected_n = parseInt( $("#map_canvas_normal").attr("data-concessionaire-preselected-id") );
+            if( isNaN(c_preselected_n) ){
+                c_preselected_n = 16;
+            }
+        }catch( e ){
+            c_preselected_n = 0;
+        }
+        if( c_preselected_n > 0 ){
+            concessionaire_preselected_n = c_preselected_n;
+            map_latLon_n = ( $("#map_canvas_normal").attr("data-lat-lon") ).split(',');
+            map_center_n = new google.maps.LatLng( map_latLon_n[0] , map_latLon_n[1] );
+        }else{
+
+
+
+            map_center_n = new google.maps.LatLng( 20.6244, -103.421 );
+        }
+        var map_options_n = {
+            center: map_center_n,
+            panControl: !IS_MOBILE,
+            zoomControl: !IS_MOBILE,
+            mapTypeControl: false,
+            streetViewControl: !IS_MOBILE,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            zoom: 13
+        };
+        map_n = new google.maps.Map( document.getElementById("map_canvas_normal"), map_options_n );
+        if (!concessionaire_detail_selected_n)
+            $.get_map_data();
+    }
+    google.maps.event.addDomListener( window, "load", initialize_map_n);
+    $.adjust_map_width_n = function( redo ){
+
+        $('.concessionaire-list').height(
+            $('#concessionaires-map-normal').height() - 196
+        );
+        $('#concessionaires-data .content').height(
+            $('#concessionaires-map-normal').height()
+        );
+        var ls_w_n = $("#concessionaires-list").width() + 1;
+        var da_w_n = 0;
+        if( $("#concessionaires-data").is('.active') ){
+            $("#concessionaires-data:hidden").css({width:1}).show();
+            da_w_n = 330;
+        }
+        var wi_w_n = $("#concessionaires" ).width();
+        var ma_w_n = wi_w_n - ls_w_n - da_w_n;
+        $("#concessionaires-data").width( da_w_n );
+        $("#concessionaires-map-normal" ).width( ma_w_n );
     }
     $(window).resize(function() {
         $.adjust_map_width();

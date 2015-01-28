@@ -21,7 +21,7 @@
     <link type="text/css" rel="stylesheet" href="../css/plugins/jquery.chosen/chosen.css" />
     <link type="text/css" rel="stylesheet" href="../css/libs/datepicker.css" />
     <link type="text/css" rel="stylesheet" href="../css/suzuki/main.css" />
-    <link type="text/css" rel="stylesheet" href="../css/suzuki/font-awesome.css" />
+    <link type="text/css" rel="stylesheet" href="../css/webfonts/fontawesome/font-awesome.css" />
     <link type="text/css" rel="stylesheet" href="../css/webfonts/suzuki-webfontkit/stylesheet.css" />
     <link type="text/css" rel="stylesheet" href="../css/plugins/jquery.dummy-alert/main.css" />
     <link type="text/css" rel="stylesheet" href="../css/plugins/instantdrive.utils/main.css" />
@@ -263,7 +263,7 @@ function trackOutboundLink( url ) {
                             </div>
                             <div class="wrapper-image">
                                 <div class="big-image">
-                                    <img id="concessionaire-image" src="../images/sections/concessionaires/previews/aguascalientes-big.jpg" alt="Suzuki Aguascalientes" title="Suzuki Aguascalientes" />
+                                    <img id="concessionaire-image" src="../images/sections/concessionaires/previews/lopoz-mateos-big.jpg" alt="Suzuki López Mateos" title="Suzuki López Mateos" />
                                 </div>
                             </div>
                             <div class="wrapper-test-drive">
@@ -284,7 +284,7 @@ function trackOutboundLink( url ) {
                 </div>
             </div>
             <div id="concessionaires-normal" class="window-adaptable hidden-nomobil" data-min-height="550">
-                <div class="concessionaire-column list" id="concessionaires-list">
+                <div class="concessionaire-column list-normal" id="concessionaires-list">
                     <div class="content">
                         <div class="concessionaire-list">
                             <div id="concessionaires-dynamic-list">
@@ -303,7 +303,6 @@ function trackOutboundLink( url ) {
                                             </address>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <i>&#59238;</i>
                                     </li>
                                     <li class="concessionaire" data-key="vallarta">
                                         <div class="image">
@@ -317,7 +316,6 @@ function trackOutboundLink( url ) {
                                             </address>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <i>&#59238;</i>
                                     </li>
                                     <li class="separator">Colima</li>
                                     <li class="concessionaire" data-key="colima">
@@ -332,7 +330,6 @@ function trackOutboundLink( url ) {
                                             </address>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <i>&#59238;</i>
                                     </li>
                                     <li class="separator">Michoacán</li>
                                     <li class="concessionaire" data-key="morelia">
@@ -347,7 +344,6 @@ function trackOutboundLink( url ) {
                                             </address>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <i>&#59238;</i>
                                     </li>
                                 </ul>
                             </div>
@@ -356,11 +352,11 @@ function trackOutboundLink( url ) {
                 </div>
                 <div class="concessionaire-column info" id="concessionaires-data">
                     <div class="content">
-                        <div class="concessionaire-close-box">
+                        <!--<div class="concessionaire-close-box">
                             <a href="#close" class="concessionaire-close">
                                 <span>close</span>
                             </a>
-                        </div>
+                        </div>-->
                         <div class="concessionaire-data-wrapper">
                             <div class="wrapper-title">
                                 <div class="data title">
@@ -386,18 +382,25 @@ function trackOutboundLink( url ) {
                             </div>
                             <div class="wrapper-image">
                                 <div class="big-image">
-                                    <img id="concessionaire-image" src="../images/sections/concessionaires/previews/aguascalientes-big.jpg" alt="Suzuki Aguascalientes" title="Suzuki Aguascalientes" />
+                                    <img id="concessionaire-image" src="../images/sections/concessionaires/previews/lopez-mateos-big.jpg" alt="Suzuki López Mateos" title="Suzuki López Mateos" />
                                 </div>
                             </div>
                             <div class="wrapper-test-drive">
-                                <div class="data test-drive">
+                                <!--<div class="data test-drive">
                                     <a href="#prueba-de-manejo" id="open-test-drive">Agenda tu prueba de manejo</a>
-                                </div>
+                                </div>-->
                                 <div class="view-more"><a href="#more" class="view-all-concessionaires">Ver todas las concesionarias</a></div>
-                                <a href="#" id="back-list-concessionaires">Ver todas las concesionarias</a>
+                                <!--<div class="view-more"><a href="#more" class="view-all-concessionaires">Ver todas las concesionarias</a></div>
+                                <a href="#" id="back-list-concessionaires">Ver todas las concesionarias</a>-->
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="concessionaire-column map-normal" id='concessionaires-map-normal'>
+                    <div class="content">
+                         <div id="map_canvas_normal" data-concessionaire-preselected-id="15" data-lat-lon="19.6887,-101.152"></div>
+                    </div>
+                    <div id="shadow-map-normal"></div>
                 </div>
             </div>
         </div>
